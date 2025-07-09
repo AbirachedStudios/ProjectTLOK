@@ -1,1 +1,2 @@
 .fbx filter=lfs diff=lfs merge=lfs -text
+'/c/Users/matug/Desktop/ProjectTLOK/Assets/Scenes/Museo-v6(Prueba).fbx' filter=lfs diff=lfs merge=lfs -text
