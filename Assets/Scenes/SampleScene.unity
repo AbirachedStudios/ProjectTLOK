@@ -187,8 +187,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168304106}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2345708, y: 0, z: 0, w: 0.97209907}
-  m_LocalPosition: {x: 0, y: 3.5, z: -6.83}
+  m_LocalRotation: {x: 0.41559088, y: 0, z: 0, w: 0.9095517}
+  m_LocalPosition: {x: 0, y: 9.54, z: -8.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -366,8 +366,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2345708, y: 0, z: 0, w: 0.97209907}
-  m_LocalPosition: {x: 0, y: 3.5, z: -6.83}
+  m_LocalRotation: {x: 0.41559088, y: 0, z: 0, w: 0.9095517}
+  m_LocalPosition: {x: 0, y: 9.54, z: -8.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -958,8 +958,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2110780393}
   - component: {fileID: 2110780396}
-  - component: {fileID: 2110780397}
   - component: {fileID: 2110780398}
+  - component: {fileID: 2110780399}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -994,7 +994,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2110780397
+--- !u!114 &2110780398
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110780392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2110780399
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1007,7 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3.5, z: -6.83}
+  m_FollowOffset: {x: 0, y: 9.54, z: -8.26}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1048,18 +1060,6 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 0
---- !u!114 &2110780398
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110780392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
