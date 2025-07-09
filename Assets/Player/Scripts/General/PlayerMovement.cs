@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
             if (!isMoving)
             {
                 isMoving = !isMoving;
-                Debug.Log(isMoving);
             }
             stepTimer -= Time.deltaTime;
             if (stepTimer <= 0f)
