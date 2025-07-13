@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement
 {
     [Header("References")]
     private CharacterController controller;
@@ -26,25 +26,28 @@ public class PlayerMovement : MonoBehaviour
     //private SoundControl sc;
     public float stepTimer = 0f;
     [SerializeField] float intervaloPisadas = 0.5f;
-    private void Awake()
+    //*****************************************//
+
+    //**-References-**//
+
+    PlayerInputs _pInputs;
+    PlayerStats _pStats;
+
+    CharacterController _characterController;
+
+
+    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats)
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
-       // sc = GetComponent<SoundControl>();
-    }
-    void Start()
-    {
-        controller = GetComponent<CharacterController>();
-        playerInputs = GetComponent<PlayerInputs>();
+        _pInputs = pInputs;
+        _pStats = pStats;
     }
 
-    void Update()
+    public void MovementUpdate()
     {
         Movement();
         Gravity();
     }
-
-    void Movement()
+    private void Movement()
     {
         GroundMovement();
         Turn();
@@ -69,13 +72,6 @@ public class PlayerMovement : MonoBehaviour
 
         move.y = Gravity();
 
-        /*if (controller.isGrounded) 
-    { 
-        if (move.x != 0 || move.y != 0)
-        {
-            sc.Pisadas();
-        }
-    }*/
         if (controller.isGrounded && (move.x != 0 || move.z != 0))
         {
             if (!isMoving)
@@ -100,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
            
-            stepTimer = 0f; // reiniciar si no se mueve o est� en el aire
+            stepTimer = 0f;
         }
 
         controller.Move(move * Time.deltaTime);
@@ -108,7 +104,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Turn()
     {
-        //if (Mathf.Abs(playerInputs.MoveInput.x) > 0 || Mathf.Abs(playerInputs.MoveInput.x) < 0 || Mathf.Abs(playerInputs.MoveInput.y) < 0 || Mathf.Abs(playerInputs.MoveInput.y) > 0)
         if (Mathf.Abs(playerInputs.MoveInput.x) != 0 || Mathf.Abs(playerInputs.MoveInput.y) != 0)
         {
             Vector3 currentLookDirection = controller.velocity.normalized;
