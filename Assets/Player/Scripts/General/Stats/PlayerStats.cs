@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using PlayerData;
 
 
 [System.Serializable]
@@ -7,28 +8,18 @@ public class PlayerStats //ACA VAN LAS INTERFACES QUE DETECTAN METODOS DEL PLAYE
 {
     
     MonoBehaviour _monoBehaviour;
-    /*
-    Estadisticas del jugador persistentes entre escenas (vida, damage, armor, speed)
-    Las variables relacionadas a player van con p_
-    Variables encapsuladas {get; private set;}
-    ej:
 
-    public int p_health {get; private set;}
-    public int p_maxHealth {get; private set;} 
-    
-
-    Metodos publicos que modifican las variables directamente
-    ej:
-
-    public void HealPlayer(int heal)
-    {
-        p_actualHealth += heal;
-    }
-    */
-
-    public PlayerStats(MonoBehaviour monoBehaviour)
+    public PlayerStats(MonoBehaviour monoBehaviour, float dmg, float atkSpd, float mxHlth, float hlth, float armr, float ms, float jpHght, float gravity)
     {
         _monoBehaviour = monoBehaviour;
+        p_damage = dmg;
+        p_attackSpeed = atkSpd;
+        p_maxHealth = mxHlth;
+        p_health = hlth;
+        p_armor = armr;
+        p_moveSpeed = ms;
+        p_jumpHeight = jpHght;
+        p_gravity = gravity;
     }
 
     /***************-VARIABLES-***************/
@@ -39,6 +30,7 @@ public class PlayerStats //ACA VAN LAS INTERFACES QUE DETECTAN METODOS DEL PLAYE
     public float p_armor { get; private set; }
     public float p_moveSpeed { get; private set; }
     public float p_jumpHeight { get; private set; }
+    public float p_gravity { get; private set; }
 
 
     /***************-METODOS-***************/
@@ -66,13 +58,13 @@ public class PlayerStats //ACA VAN LAS INTERFACES QUE DETECTAN METODOS DEL PLAYE
             }
         }
     }
-    public void PercentageDebuff(float stat, float armor, float timer)
+    public void PercentageDebuff(float stat, float debuffPercentage, float timer)
     {
-        _monoBehaviour.StartCoroutine(StatPercentageChronometer(stat, armor, timer));
+        _monoBehaviour.StartCoroutine(StatPercentageChronometer(stat, debuffPercentage, timer));
     }
-    public void FlatDebuff(float stat, float armor, float timer)
+    public void FlatDebuff(float stat, float debuffQuantity, float timer)
     {
-        _monoBehaviour.StartCoroutine(StatFlatChronometer(stat, armor, timer));
+        _monoBehaviour.StartCoroutine(StatFlatChronometer(stat, debuffQuantity, timer));
     }
 
     /***************-CORRUTINAS-***************/

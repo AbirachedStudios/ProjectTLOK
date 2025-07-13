@@ -1,8 +1,9 @@
 
 using UnityEngine;
+using PlayerData;
 
 public class PlayerMovement
-{
+{/*
     [Header("References")]
     private CharacterController controller;
     private PlayerInputs playerInputs;
@@ -13,7 +14,6 @@ public class PlayerMovement
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float sprintTransitionSprint = 5f;
     [SerializeField] float turnSpeed = 2f;
-    private Vector3 move; //Necesito
 
 
     [Header("Jump Settings")]
@@ -26,20 +26,28 @@ public class PlayerMovement
     //private SoundControl sc;
     public float stepTimer = 0f;
     [SerializeField] float intervaloPisadas = 0.5f;
-    //*****************************************//
+    //*****************************************/
 
-    //**-References-**//
+    //*****-References-****//
 
     PlayerInputs _pInputs;
     PlayerStats _pStats;
 
-    CharacterController _characterController;
+    CharacterController _pController;
 
+    //*****-Variables-****//
 
-    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats)
+    //**Movement**//
+    Vector3 _move;
+
+    //**Jump**//
+    float _downForce;
+
+    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller)
     {
         _pInputs = pInputs;
         _pStats = pStats;
+        _pController = controller;
     }
 
     public void MovementUpdate()
@@ -55,11 +63,11 @@ public class PlayerMovement
 
     void GroundMovement()
     {
-        move = new Vector3(playerInputs.MoveInput.x, 0f, playerInputs.MoveInput.y);
-        move = cam.transform.TransformDirection(move);
-        move.Normalize();
+        _move = new Vector3(_pInputs.MoveInput.x, 0f, _pInputs.MoveInput.y);
+        _move = cam.transform.TransformDirection(_move);
+        _move.Normalize();
 
-        if(playerInputs.IsRunning)
+        if(_pInputs.IsRunning)
         {
             storeSpeed = Mathf.Lerp(storeSpeed, sprintSpeed, sprintTransitionSprint * Time.deltaTime);
         }
@@ -68,11 +76,11 @@ public class PlayerMovement
             storeSpeed = Mathf.Lerp(storeSpeed, walkSpeed, sprintTransitionSprint * Time.deltaTime);
         }
 
-        move *= storeSpeed;
+        _move *= storeSpeed;
 
-        move.y = Gravity();
+        _move.y = Gravity();
 
-        if (controller.isGrounded && (move.x != 0 || move.z != 0))
+        if (controller.isGrounded && (_move.x != 0 || _move.z != 0))
         {
             if (!isMoving)
             {
@@ -99,38 +107,38 @@ public class PlayerMovement
             stepTimer = 0f;
         }
 
-        controller.Move(move * Time.deltaTime);
+        controller.Move(_move * Time.deltaTime);
     }
 
     void Turn()
     {
-        if (Mathf.Abs(playerInputs.MoveInput.x) != 0 || Mathf.Abs(playerInputs.MoveInput.y) != 0)
+        if (Mathf.Abs(_pInputs.MoveInput.x) != 0 || Mathf.Abs(_pInputs.MoveInput.y) != 0)
         {
-            Vector3 currentLookDirection = controller.velocity.normalized;
+            Vector3 currentLookDirection = _pController.velocity.normalized;
             currentLookDirection.y = 0f;
 
             currentLookDirection.Normalize();
 
             Quaternion targetRotation = Quaternion.LookRotation(currentLookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+           // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
         }
     }
     private float Gravity()
     {
-        if(controller.isGrounded)
+        if(_pController.isGrounded)
         {
-            verticalVelocity = -1f;
+            _downForce = -1f;
 
-            if(playerInputs.IsJumping)
+            if(_pInputs.IsJumping)
             {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
+                _downForce = Mathf.Sqrt(_downForce * _pStats.p_gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
             }
         }
         else
         {
-            verticalVelocity -= gravity * Time.deltaTime;
+            _downForce -= _pStats.p_gravity * Time.deltaTime;
         }
 
-        return verticalVelocity;
+        return _downForce;
     }
 }

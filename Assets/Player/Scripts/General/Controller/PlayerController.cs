@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerData;
 
 public class PlayerController : Entity
 {
@@ -14,17 +15,19 @@ public class PlayerController : Entity
 
     [Header("Player Stats")]
     [SerializeField] float damage;
-    [SerializeField] float health;
-    [SerializeField] float moveSpeed;
-    [SerializeField] float armor;
     [SerializeField] float attackSpeed;
+    [SerializeField] float maxHealth;
+    [SerializeField] float health;
+    [SerializeField] float armor;
+    [SerializeField] float moveSpeed;
     [SerializeField] float jumpHeight;
+    [SerializeField] float gravity;
 
     private void Awake()
     {
-        pStats = new PlayerStats(this);
-        pMovement = new PlayerMovement(pInputs, pStats);
+        pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, moveSpeed, jumpHeight, gravity);
         pInputs = new PlayerInputs();
+        pMovement = new PlayerMovement(pInputs, pStats, cc);
     }
 
     private void Start()
@@ -34,5 +37,6 @@ public class PlayerController : Entity
     private void Update()
     {
         pInputs.InputsUpdate();
+        pMovement.MovementUpdate();
     }
 }
