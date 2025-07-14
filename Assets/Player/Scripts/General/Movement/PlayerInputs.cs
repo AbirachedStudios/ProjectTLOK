@@ -13,7 +13,7 @@ public class PlayerInputs
     {
         MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         IsRunning = Input.GetKey(KeyCode.LeftShift);
-        IsJumping = Input.GetKeyDown(KeyCode.Space);
+        IsJumping = Input.GetKey(KeyCode.Space);
         IsAttacking = Input.GetKeyDown(KeyCode.Mouse0);
         IsInteracting = Input.GetKeyDown(KeyCode.E);
     }

@@ -9,7 +9,7 @@ public class PlayerStats //ACA VAN LAS INTERFACES QUE DETECTAN METODOS DEL PLAYE
     
     MonoBehaviour _monoBehaviour;
 
-    public PlayerStats(MonoBehaviour monoBehaviour, float dmg, float atkSpd, float mxHlth, float hlth, float armr, float ms, float jpHght, float gravity)
+    public PlayerStats(MonoBehaviour monoBehaviour, float dmg, float atkSpd, float mxHlth, float hlth, float armr, float wS, float spS, float jpHght, float gravity)
     {
         _monoBehaviour = monoBehaviour;
         p_damage = dmg;
@@ -17,7 +17,8 @@ public class PlayerStats //ACA VAN LAS INTERFACES QUE DETECTAN METODOS DEL PLAYE
         p_maxHealth = mxHlth;
         p_health = hlth;
         p_armor = armr;
-        p_moveSpeed = ms;
+        p_walkSpeed = wS;
+        p_sprintSpeed = spS;
         p_jumpHeight = jpHght;
         p_gravity = gravity;
     }
@@ -28,7 +29,8 @@ public class PlayerStats //ACA VAN LAS INTERFACES QUE DETECTAN METODOS DEL PLAYE
     public float p_maxHealth { get; private set; }
     public float p_health { get; private set; }
     public float p_armor { get; private set; }
-    public float p_moveSpeed { get; private set; }
+    public float p_walkSpeed { get; private set; }
+    public float p_sprintSpeed { get; private set; }
     public float p_jumpHeight { get; private set; }
     public float p_gravity { get; private set; }
 

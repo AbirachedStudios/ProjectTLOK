@@ -4,25 +4,15 @@ using PlayerData;
 
 public class PlayerMovement
 {/*
-    [Header("References")]
-    private CharacterController controller;
-    private PlayerInputs playerInputs;
-    [SerializeField] Transform cam;
 
     [Header("Movement Settings")]
-    [SerializeField] float walkSpeed = 5f;
-    [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float sprintTransitionSprint = 5f;
     [SerializeField] float turnSpeed = 2f;
 
 
     [Header("Jump Settings")]
-    private float verticalVelocity;
-    [SerializeField] float gravity = 9.81f;
-    [SerializeField] float jumpHeight = 2f;
     public bool isMoving=false;
 
-    private float storeSpeed;
     //private SoundControl sc;
     public float stepTimer = 0f;
     [SerializeField] float intervaloPisadas = 0.5f;
@@ -39,15 +29,20 @@ public class PlayerMovement
 
     //**Movement**//
     Vector3 _move;
+    Camera _cam;
+    float _storeSpeed;
+    float _speedInterpolation;
 
     //**Jump**//
     float _downForce;
 
-    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller)
+    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate)
     {
         _pInputs = pInputs;
         _pStats = pStats;
         _pController = controller;
+        _cam = cam;
+        _speedInterpolation = speedInterpolate;
     }
 
     public void MovementUpdate()
@@ -64,22 +59,22 @@ public class PlayerMovement
     void GroundMovement()
     {
         _move = new Vector3(_pInputs.MoveInput.x, 0f, _pInputs.MoveInput.y);
-        _move = cam.transform.TransformDirection(_move);
+        _move = _cam.transform.TransformDirection(_move);
         _move.Normalize();
 
         if(_pInputs.IsRunning)
         {
-            storeSpeed = Mathf.Lerp(storeSpeed, sprintSpeed, sprintTransitionSprint * Time.deltaTime);
+            _storeSpeed = Mathf.Lerp(_storeSpeed, _pStats.p_sprintSpeed, _speedInterpolation * Time.deltaTime);
         }
         else
         {
-            storeSpeed = Mathf.Lerp(storeSpeed, walkSpeed, sprintTransitionSprint * Time.deltaTime);
+            _storeSpeed = Mathf.Lerp(_storeSpeed, _pStats.p_walkSpeed, _speedInterpolation * Time.deltaTime);
         }
 
-        _move *= storeSpeed;
+        _move *= _storeSpeed;
 
         _move.y = Gravity();
-
+        /*
         if (controller.isGrounded && (_move.x != 0 || _move.z != 0))
         {
             if (!isMoving)
@@ -106,8 +101,9 @@ public class PlayerMovement
            
             stepTimer = 0f;
         }
+        */
 
-        controller.Move(_move * Time.deltaTime);
+        _pController.Move(_move * Time.deltaTime);
     }
 
     void Turn()

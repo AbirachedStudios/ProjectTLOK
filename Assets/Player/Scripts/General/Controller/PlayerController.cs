@@ -12,6 +12,7 @@ public class PlayerController : Entity
 
     [Header("Dependencies")]
     CharacterController cc;
+    Camera cam;
 
     [Header("Player Stats")]
     [SerializeField] float damage;
@@ -19,20 +20,21 @@ public class PlayerController : Entity
     [SerializeField] float maxHealth;
     [SerializeField] float health;
     [SerializeField] float armor;
-    [SerializeField] float moveSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintSpeed;
+    [SerializeField] float speedInterpolation;
     [SerializeField] float jumpHeight;
     [SerializeField] float gravity;
 
     private void Awake()
     {
-        pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, moveSpeed, jumpHeight, gravity);
-        pInputs = new PlayerInputs();
-        pMovement = new PlayerMovement(pInputs, pStats, cc);
-    }
-
-    private void Start()
-    {
+        cam = Camera.main;
         cc = GetComponent<CharacterController>();
+
+        pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
+        pInputs = new PlayerInputs();
+        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation);
+
     }
     private void Update()
     {
