@@ -9,6 +9,7 @@ public class PlayerController : Entity
     PlayerMovement pMovement;
     PlayerInputs pInputs;
     PlayerStats pStats;
+    PlayerCollisions pCollisions;
 
     [Header("Dependencies")]
     CharacterController cc;
@@ -30,13 +31,16 @@ public class PlayerController : Entity
 
     private void Awake()
     {
+        //Primero las referencias
         cam = Camera.main;
         cc = GetComponent<CharacterController>();
         pTransform = transform;
 
+        //Luego los constructores
         pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         pInputs = new PlayerInputs();
         pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform);
+        pCollisions = new PlayerCollisions();
 
     }
     private void Update()

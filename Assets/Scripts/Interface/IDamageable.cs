@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollisions
+public interface IDamageable
 {
-    public PlayerCollisions()
-    {
-
-    }
+    void TakeDamage(float num);
 }

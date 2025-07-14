@@ -3,21 +3,7 @@ using UnityEngine;
 using PlayerData;
 
 public class PlayerMovement
-{/*
-
-    [Header("Movement Settings")]
-    [SerializeField] float sprintTransitionSprint = 5f;
-    [SerializeField] float turnSpeed = 2f;
-
-
-    [Header("Jump Settings")]
-    public bool isMoving=false;
-
-    //private SoundControl sc;
-    public float stepTimer = 0f;
-    [SerializeField] float intervaloPisadas = 0.5f;
-    //*****************************************/
-
+{
     //*****-References-****//
 
     PlayerInputs _pInputs;
@@ -78,34 +64,6 @@ public class PlayerMovement
         _move *= _storeSpeed;
 
         _move.y = Gravity();
-        /*
-        if (controller.isGrounded && (_move.x != 0 || _move.z != 0))
-        {
-            if (!isMoving)
-            {
-                isMoving = !isMoving;
-            }
-            stepTimer -= Time.deltaTime;
-            if (stepTimer <= 0f)
-            {
-              //  sc.Pisadas();
-                
-                stepTimer = intervaloPisadas;
-            }
-        }
-        else
-        {
-            if (isMoving)
-            {
-                if (!playerInputs.IsJumping)
-                {
-                    isMoving = !isMoving;
-                }
-            }
-           
-            stepTimer = 0f;
-        }
-        */
 
         _pController.Move(_move * Time.deltaTime);
     }
