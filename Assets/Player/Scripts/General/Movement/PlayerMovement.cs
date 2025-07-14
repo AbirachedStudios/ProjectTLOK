@@ -29,20 +29,24 @@ public class PlayerMovement
 
     //**Movement**//
     Vector3 _move;
+    Transform _pTransform;
     Camera _cam;
     float _storeSpeed;
     float _speedInterpolation;
+    float _turnSpeed;
 
     //**Jump**//
     float _downForce;
 
-    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate)
+    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform)
     {
         _pInputs = pInputs;
         _pStats = pStats;
         _pController = controller;
         _cam = cam;
         _speedInterpolation = speedInterpolate;
+        _pTransform = pTransform;
+        _turnSpeed = turnSpeed;
     }
 
     public void MovementUpdate()
@@ -116,7 +120,7 @@ public class PlayerMovement
             currentLookDirection.Normalize();
 
             Quaternion targetRotation = Quaternion.LookRotation(currentLookDirection);
-           // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+            _pTransform.rotation = Quaternion.Slerp(_pTransform.rotation, targetRotation, Time.deltaTime * _turnSpeed);
         }
     }
     private float Gravity()
@@ -127,14 +131,14 @@ public class PlayerMovement
 
             if(_pInputs.IsJumping)
             {
-                _downForce = Mathf.Sqrt(_downForce * _pStats.p_gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
+                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
             }
         }
         else
         {
             _downForce -= _pStats.p_gravity * Time.deltaTime;
         }
-
+        Debug.Log(_downForce);
         return _downForce;
     }
 }

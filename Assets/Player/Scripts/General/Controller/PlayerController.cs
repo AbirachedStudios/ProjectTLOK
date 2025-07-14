@@ -13,6 +13,7 @@ public class PlayerController : Entity
     [Header("Dependencies")]
     CharacterController cc;
     Camera cam;
+    Transform pTransform;
 
     [Header("Player Stats")]
     [SerializeField] float damage;
@@ -25,15 +26,17 @@ public class PlayerController : Entity
     [SerializeField] float speedInterpolation;
     [SerializeField] float jumpHeight;
     [SerializeField] float gravity;
+    [SerializeField] float turnSpeed;
 
     private void Awake()
     {
         cam = Camera.main;
         cc = GetComponent<CharacterController>();
+        pTransform = transform;
 
         pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         pInputs = new PlayerInputs();
-        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation);
+        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform);
 
     }
     private void Update()
