@@ -23,7 +23,7 @@ public class PlayerController : Entity
     [SerializeField] float health;
     [SerializeField] float armor;
     [SerializeField] float walkSpeed;
-    [SerializeField] float sprintSpeed;
+    [SerializeField] float sprintSpeed; 
     [SerializeField] float speedInterpolation;
     [SerializeField] float jumpHeight;
     [SerializeField] float gravity;
