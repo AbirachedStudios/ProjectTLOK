@@ -96,7 +96,6 @@ public class PlayerMovement
         {
             _downForce -= _pStats.p_gravity * Time.deltaTime;
         }
-        Debug.Log(_downForce);
         return _downForce;
     }
 }
