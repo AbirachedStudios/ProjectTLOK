@@ -21,10 +21,13 @@ public class PlayerMovement
     float _speedInterpolation;
     float _turnSpeed;
 
+    float _coyoteTimer;
+    float _coyoteTimeReset;
+
     //**Jump**//
     float _downForce;
 
-    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform)
+    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform, float coyote, float coyoteReset)
     {
         _pInputs = pInputs;
         _pStats = pStats;
@@ -33,6 +36,8 @@ public class PlayerMovement
         _speedInterpolation = speedInterpolate;
         _pTransform = pTransform;
         _turnSpeed = turnSpeed;
+        _coyoteTimer = coyote;
+        _coyoteTimeReset = coyoteReset;
     }
 
     public void MovementUpdate()
@@ -81,6 +86,7 @@ public class PlayerMovement
             _pTransform.rotation = Quaternion.Slerp(_pTransform.rotation, targetRotation, Time.deltaTime * _turnSpeed);
         }
     }
+    /*
     private float Gravity()
     {
         if(_pController.isGrounded)
@@ -96,6 +102,33 @@ public class PlayerMovement
         {
             _downForce -= _pStats.p_gravity * Time.deltaTime;
         }
+        return _downForce;
+    }
+    */
+
+    private float Gravity()
+    {
+        if (_pController.isGrounded)
+        {
+            _coyoteTimer = _coyoteTimeReset;
+
+            if (_pInputs.IsJumping)
+            {
+                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
+            }
+        }
+        else
+        {
+           _coyoteTimer -= Time.deltaTime;
+
+            if(_pInputs.IsJumping && _coyoteTimer > 0f)
+            {
+                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2f);
+                _coyoteTimer = 0f;
+            }
+            _downForce -= _pStats.p_gravity * Time.deltaTime;
+        }
+
         return _downForce;
     }
 }
