@@ -26,8 +26,11 @@ public class PlayerController : Entity
     [SerializeField] float sprintSpeed; 
     [SerializeField] float speedInterpolation;
     [SerializeField] float jumpHeight;
+    [SerializeField] float coyoteTimer;
     [SerializeField] float gravity;
     [SerializeField] float turnSpeed;
+
+    private float coyoteReset;
 
     private void Awake()
     {
@@ -35,11 +38,12 @@ public class PlayerController : Entity
         cam = Camera.main;
         cc = GetComponent<CharacterController>();
         pTransform = transform;
+        coyoteReset = coyoteTimer;
 
         //Luego los constructores
         pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         pInputs = new PlayerInputs();
-        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform);
+        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
         pCollisions = new PlayerCollisions();
 
     }
