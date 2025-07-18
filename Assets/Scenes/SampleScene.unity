@@ -4176,6 +4176,7 @@ MonoBehaviour:
   sprintSpeed: 8
   speedInterpolation: 2
   jumpHeight: 5
+  coyoteTimer: 0.5
   gravity: 10
   turnSpeed: 10
 --- !u!114 &534396261
@@ -5444,7 +5445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721154971}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4755486, y: 0.00431359, z: -0.0023319067, w: 0.8796758}
+  m_LocalRotation: {x: 0.4755486, y: 0.0043136203, z: -0.002331923, w: 0.8796758}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
