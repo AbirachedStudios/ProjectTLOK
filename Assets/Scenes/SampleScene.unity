@@ -4106,6 +4106,8 @@ GameObject:
   - component: {fileID: 534396257}
   - component: {fileID: 534396255}
   - component: {fileID: 534396260}
+  - component: {fileID: 534396262}
+  - component: {fileID: 534396261}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4179,6 +4181,60 @@ MonoBehaviour:
   coyoteTimer: 0.3
   gravity: 10
   turnSpeed: 10
+  isMoving: 0
+  isJumping: 0
+--- !u!114 &534396261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534396254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f1e4707815c14429516ea3b85717da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &534396262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534396254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a012a5125d23d64d950f36c1f51a247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <golpe>k__BackingField:
+    Guid:
+      Data1: 809559491
+      Data2: 1260899248
+      Data3: -766736252
+      Data4: -1230283779
+    Path: event:/SFX/Golpe
+  <especial>k__BackingField:
+    Guid:
+      Data1: -118528964
+      Data2: 1329874265
+      Data3: -804646768
+      Data4: -729088757
+    Path: event:/SFX/Jugador/Tesla/Especial-Electricidad
+  <pasos>k__BackingField:
+    Guid:
+      Data1: 2095356752
+      Data2: 1256232348
+      Data3: -146800220
+      Data4: -823969293
+    Path: event:/SFX/Jugador/Tesla/Pasos-Tesla
+  <salto>k__BackingField:
+    Guid:
+      Data1: -901406332
+      Data2: 1315048776
+      Data3: -431320904
+      Data4: -1951706070
+    Path: event:/SFX/Jugador/Tesla/Salto-Tesla
 --- !u!1 &534670938 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2320202314119320843, guid: c0be4c2a200db714ab2e439ba9756ef2,
@@ -17505,6 +17561,74 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2666099457082871629, guid: c0be4c2a200db714ab2e439ba9756ef2, type: 3}
+--- !u!1001 &1721146435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131119607758880739, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333338317935192153, guid: fefff9c8da19ac7448424d3929bca5d3,
+        type: 3}
+      propertyPath: m_Name
+      value: Audio Mangaer - Prueba
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fefff9c8da19ac7448424d3929bca5d3, type: 3}
 --- !u!1 &1728595630 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5446169893169118426, guid: c0be4c2a200db714ab2e439ba9756ef2,
@@ -21072,3 +21196,4 @@ SceneRoots:
   - {fileID: 1333019431}
   - {fileID: 567805024}
   - {fileID: 456144396}
+  - {fileID: 1721146435}
