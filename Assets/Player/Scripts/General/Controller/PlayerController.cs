@@ -32,6 +32,10 @@ public class PlayerController : Entity
 
     private float coyoteReset;
 
+    [Header("Access")]
+    public bool isMoving;
+    public bool isJumping;
+
     private void Awake()
     {
         //Primero las referencias
@@ -51,5 +55,7 @@ public class PlayerController : Entity
     {
         pInputs.InputsUpdate();
         pMovement.MovementUpdate();
+        isMoving = pInputs.MoveInput != Vector3.zero;
+        isJumping = pInputs.IsJumping;
     }
 }
