@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using PlayerData;
+using TMPro;
 
 public class PlayerMovement
 {/*
@@ -31,14 +32,14 @@ public class PlayerMovement
     Vector3 _move;
     Transform _pTransform;
     Camera _cam;
+    Animator _animator;
     float _storeSpeed;
     float _speedInterpolation;
     float _turnSpeed;
-
     //**Jump**//
     float _downForce;
 
-    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform)
+    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform, Animator animator)
     {
         _pInputs = pInputs;
         _pStats = pStats;
@@ -47,6 +48,7 @@ public class PlayerMovement
         _speedInterpolation = speedInterpolate;
         _pTransform = pTransform;
         _turnSpeed = turnSpeed;
+        _animator = animator;
     }
 
     public void MovementUpdate()
@@ -65,8 +67,11 @@ public class PlayerMovement
         _move = new Vector3(_pInputs.MoveInput.x, 0f, _pInputs.MoveInput.y);
         _move = _cam.transform.TransformDirection(_move);
         _move.Normalize();
-
-        if(_pInputs.IsRunning)
+        //if (Mathf.Abs(_pInputs.MoveInput.x) != 0 || Mathf.Abs(_pInputs.MoveInput.y) != 0)
+        //{
+            _animator.SetBool("IsMoving", (Mathf.Abs(_pInputs.MoveInput.x) != 0 || Mathf.Abs(_pInputs.MoveInput.y) != 0)); 
+       // }
+        if (_pInputs.IsRunning)
         {
             _storeSpeed = Mathf.Lerp(_storeSpeed, _pStats.p_sprintSpeed, _speedInterpolation * Time.deltaTime);
         }
@@ -78,6 +83,7 @@ public class PlayerMovement
         _move *= _storeSpeed;
 
         _move.y = Gravity();
+        _animator.SetFloat("SprintSpeed", _storeSpeed);
         /*
         if (controller.isGrounded && (_move.x != 0 || _move.z != 0))
         {
@@ -138,7 +144,7 @@ public class PlayerMovement
         {
             _downForce -= _pStats.p_gravity * Time.deltaTime;
         }
-        Debug.Log(_downForce);
+        //Debug.Log(_downForce);
         return _downForce;
     }
 }

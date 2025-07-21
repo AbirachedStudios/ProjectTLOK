@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerData;
+using UnityEditor.Animations;
+using System.Threading;
 
 public class PlayerController : Entity
 {
@@ -9,7 +11,8 @@ public class PlayerController : Entity
     PlayerMovement pMovement;
     PlayerInputs pInputs;
     PlayerStats pStats;
-
+    Animator anm;
+    PlayerAnimation pAnim;
     [Header("Dependencies")]
     CharacterController cc;
     Camera cam;
@@ -32,16 +35,19 @@ public class PlayerController : Entity
     {
         cam = Camera.main;
         cc = GetComponent<CharacterController>();
+        anm = GetComponentInChildren<Animator>();
         pTransform = transform;
+        
 
         pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         pInputs = new PlayerInputs();
-        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform);
-
+        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform,anm );
+        pAnim = new PlayerAnimation(pInputs, cc, anm);
     }
     private void Update()
     {
         pInputs.InputsUpdate();
+        pAnim.AnimationsUpdate();
         pMovement.MovementUpdate();
     }
 }
