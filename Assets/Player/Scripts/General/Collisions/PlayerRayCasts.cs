@@ -14,11 +14,9 @@ public class PlayerRayCasts
     {
         _distance = distance;
         _pController = playerController;
-
-        //ray = new Ray(playerPosition, _pController.transform.forward);
     }
 
-    public void EyesRay()
+    private void EyesRay()
     {
         playerPosition = _pController.transform.position;
 
@@ -28,13 +26,22 @@ public class PlayerRayCasts
         {
             if(hit.collider.TryGetComponent<RainbowMaterialList>(out RainbowMaterialList rml))
             {
-                rml.gameObject.SetActive(false);
+                Debug.Log(GetRandomEnum<EnemyType>());
+                Debug.Log(GetRandomEnum<ElementType>());
+                Debug.Log(GetRandomEnum<AttackType>());
             }
         }
+    }
+
+    private static T GetRandomEnum<T>()
+    {
+        System.Array values = System.Enum.GetValues(typeof(T));
+        return (T)values.GetValue(Random.Range(0, values.Length));
     }
 
     public void PlayerRayCastsUpdate()
     {
         EyesRay();
+        
     }
 }
