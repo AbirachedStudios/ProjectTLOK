@@ -10,6 +10,7 @@ public class PlayerController : Entity
     PlayerInputs pInputs;
     PlayerStats pStats;
     PlayerCollisions pCollisions;
+    PlayerRayCasts pRayCasts;
 
     [Header("Dependencies")]
     CharacterController cc;
@@ -30,6 +31,9 @@ public class PlayerController : Entity
     [SerializeField] float gravity;
     [SerializeField] float turnSpeed;
 
+    [Header("Player Attack")]
+    [SerializeField] float distance;
+
     private float coyoteReset;
 
     private void Awake()
@@ -45,11 +49,19 @@ public class PlayerController : Entity
         pInputs = new PlayerInputs();
         pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
         pCollisions = new PlayerCollisions();
+        pRayCasts = new PlayerRayCasts(this, distance);
 
     }
     private void Update()
     {
         pInputs.InputsUpdate();
         pMovement.MovementUpdate();
+        pRayCasts.PlayerRayCastsUpdate();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, transform.forward * distance);
     }
 }
