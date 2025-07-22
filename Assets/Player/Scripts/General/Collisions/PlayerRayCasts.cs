@@ -1,4 +1,5 @@
 
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerRayCasts
@@ -28,13 +29,16 @@ public class PlayerRayCasts
             {
                 _pController.mouseSettings.ChangeCursor(CursorType.Attack);
                 Debug.Log("Attack");
-                return;
+
             }
+        }
+        else
+        {
             _pController.mouseSettings.ChangeCursor(CursorType.Basic);
-                Debug.Log("Basic");
+            Debug.Log("Basic");
         }
     }
-    private static T GetRandomEnum<T>()  
+    private static T GetRandomEnum<T>()
     {
         System.Array values = System.Enum.GetValues(typeof(T)); //Un generic base que retorna un parametro T de un tipo T.
         return (T)values.GetValue(Random.Range(0, values.Length)); //Ej: De un array retorna un elemento de dicho array
@@ -44,4 +48,6 @@ public class PlayerRayCasts
     {
         EyesRay();
     }
+
+    private int Pepe(int x) => x > 9 ? 0 : x + 1;
 }
