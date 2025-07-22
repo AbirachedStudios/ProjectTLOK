@@ -49,5 +49,4 @@ public class PlayerRayCasts
         EyesRay();
     }
 
-    private int Pepe(int x) => x > 9 ? 0 : x + 1;
 }
