@@ -23,3 +23,11 @@ public enum AttackType
     Presenting,
     Ambush
 }
+
+public enum CursorType
+{
+    Basic,
+    Attack,
+    Interact,
+    Menu
+}

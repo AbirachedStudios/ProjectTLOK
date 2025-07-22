@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using PlayerData;
 
@@ -9,8 +7,9 @@ public class PlayerController : Entity
     PlayerMovement pMovement;
     PlayerInputs pInputs;
     PlayerStats pStats;
-    PlayerCollisions pCollisions;
     PlayerRayCasts pRayCasts;
+    PlayerCollisions pCollisions;
+    public MouseSettings mouseSettings;
 
     [Header("Dependencies")]
     CharacterController cc;
@@ -29,12 +28,14 @@ public class PlayerController : Entity
     [SerializeField] float jumpHeight;
     [SerializeField] float coyoteTimer;
     [SerializeField] float gravity;
-    [SerializeField] float turnSpeed;
+    private float coyoteReset;
 
     [Header("Player Attack")]
     [SerializeField] float distance;
 
-    private float coyoteReset;
+    [Header("Player Mouse")]
+    [SerializeField] float turnSpeed;
+    [SerializeField] Texture2D[] mouseTexture;
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class PlayerController : Entity
         pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
         pCollisions = new PlayerCollisions();
         pRayCasts = new PlayerRayCasts(this, distance);
+        mouseSettings = new MouseSettings(mouseTexture);
 
     }
     private void Update()

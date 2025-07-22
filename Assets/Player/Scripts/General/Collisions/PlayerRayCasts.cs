@@ -24,24 +24,24 @@ public class PlayerRayCasts
 
         if (Physics.Raycast(ray, out RaycastHit hit, _distance))
         {
-            if(hit.collider.TryGetComponent<RainbowMaterialList>(out RainbowMaterialList rml))
+            if (hit.collider.TryGetComponent<RainbowMaterialList>(out RainbowMaterialList rml)) //DESPUES LO ARREGLO PORQUE NO CAMBIA EL MOUSE
             {
-                Debug.Log(GetRandomEnum<EnemyType>());
-                Debug.Log(GetRandomEnum<ElementType>());
-                Debug.Log(GetRandomEnum<AttackType>());
+                _pController.mouseSettings.ChangeCursor(CursorType.Attack);
+                Debug.Log("Attack");
+                return;
             }
+            _pController.mouseSettings.ChangeCursor(CursorType.Basic);
+                Debug.Log("Basic");
         }
     }
-
-    private static T GetRandomEnum<T>()
+    private static T GetRandomEnum<T>()  
     {
-        System.Array values = System.Enum.GetValues(typeof(T));
-        return (T)values.GetValue(Random.Range(0, values.Length));
+        System.Array values = System.Enum.GetValues(typeof(T)); //Un generic base que retorna un parametro T de un tipo T.
+        return (T)values.GetValue(Random.Range(0, values.Length)); //Ej: De un array retorna un elemento de dicho array
     }
 
     public void PlayerRayCastsUpdate()
     {
         EyesRay();
-        
     }
 }
