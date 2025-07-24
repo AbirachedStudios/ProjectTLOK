@@ -3,21 +3,7 @@ using UnityEngine;
 using PlayerData;
 
 public class PlayerMovement
-{/*
-
-    [Header("Movement Settings")]
-    [SerializeField] float sprintTransitionSprint = 5f;
-    [SerializeField] float turnSpeed = 2f;
-
-
-    [Header("Jump Settings")]
-    public bool isMoving=false;
-
-    //private SoundControl sc;
-    public float stepTimer = 0f;
-    [SerializeField] float intervaloPisadas = 0.5f;
-    //*****************************************/
-
+{
     //*****-References-****//
 
     PlayerInputs _pInputs;
@@ -35,10 +21,13 @@ public class PlayerMovement
     float _speedInterpolation;
     float _turnSpeed;
 
+    float _coyoteTimer;
+    float _coyoteTimeReset;
+
     //**Jump**//
     float _downForce;
 
-    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform)
+    public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform, float coyote, float coyoteReset)
     {
         _pInputs = pInputs;
         _pStats = pStats;
@@ -47,6 +36,8 @@ public class PlayerMovement
         _speedInterpolation = speedInterpolate;
         _pTransform = pTransform;
         _turnSpeed = turnSpeed;
+        _coyoteTimer = coyote;
+        _coyoteTimeReset = coyoteReset;
     }
 
     public void MovementUpdate()
@@ -78,34 +69,6 @@ public class PlayerMovement
         _move *= _storeSpeed;
 
         _move.y = Gravity();
-        /*
-        if (controller.isGrounded && (_move.x != 0 || _move.z != 0))
-        {
-            if (!isMoving)
-            {
-                isMoving = !isMoving;
-            }
-            stepTimer -= Time.deltaTime;
-            if (stepTimer <= 0f)
-            {
-              //  sc.Pisadas();
-                
-                stepTimer = intervaloPisadas;
-            }
-        }
-        else
-        {
-            if (isMoving)
-            {
-                if (!playerInputs.IsJumping)
-                {
-                    isMoving = !isMoving;
-                }
-            }
-           
-            stepTimer = 0f;
-        }
-        */
 
         _pController.Move(_move * Time.deltaTime);
     }
@@ -123,6 +86,7 @@ public class PlayerMovement
             _pTransform.rotation = Quaternion.Slerp(_pTransform.rotation, targetRotation, Time.deltaTime * _turnSpeed);
         }
     }
+    /*
     private float Gravity()
     {
         if(_pController.isGrounded)
@@ -138,7 +102,33 @@ public class PlayerMovement
         {
             _downForce -= _pStats.p_gravity * Time.deltaTime;
         }
-        Debug.Log(_downForce);
+        return _downForce;
+    }
+    */
+
+    private float Gravity()
+    {
+        if (_pController.isGrounded)
+        {
+            _coyoteTimer = _coyoteTimeReset;
+
+            if (_pInputs.IsJumping)
+            {
+                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
+            }
+        }
+        else
+        {
+           _coyoteTimer -= Time.deltaTime;
+
+            if(_pInputs.IsJumping && _coyoteTimer > 0f)
+            {
+                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2f);
+                _coyoteTimer = 0f;
+            }
+            _downForce -= _pStats.p_gravity * Time.deltaTime;
+        }
+
         return _downForce;
     }
 }

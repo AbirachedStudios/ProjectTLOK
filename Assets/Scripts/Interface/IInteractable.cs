@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollisions
+public interface IInteractable
 {
-    public PlayerCollisions()
-    {
-
-    }
+    void Activate();
 }

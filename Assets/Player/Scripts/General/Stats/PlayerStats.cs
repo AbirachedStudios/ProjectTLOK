@@ -1,10 +1,9 @@
 using System.Collections;
 using UnityEngine;
-using PlayerData;
 
 
 [System.Serializable]
-public class PlayerStats //ACA VAN LAS INTERFACES QUE DETECTAN METODOS DEL PLAYER
+public class PlayerStats : IDamageable
 {
     
     MonoBehaviour _monoBehaviour;
