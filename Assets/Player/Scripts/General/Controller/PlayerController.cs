@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerData;
+using UnityEngine.Serialization;
 
 public class PlayerController : Entity
 {
     [Header("References")]
-    PlayerMovement pMovement;
+    [SerializeField] PlayerMovement pMovement;
     PlayerInputs pInputs;
     PlayerStats pStats;
 
@@ -14,7 +15,8 @@ public class PlayerController : Entity
     CharacterController cc;
     Camera cam;
     Transform pTransform;
-
+    public PlayerCombo pCombo;
+    
     [Header("Player Stats")]
     [SerializeField] float damage;
     [SerializeField] float attackSpeed;
@@ -37,11 +39,13 @@ public class PlayerController : Entity
         pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         pInputs = new PlayerInputs();
         pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform);
+        pCombo = new PlayerCombo(pInputs, pStats);
 
     }
     private void Update()
     {
         pInputs.InputsUpdate();
         pMovement.MovementUpdate();
+        pCombo.ComboHandlerUpdate();
     }
 }
