@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public interface IDestroyable
 {
-    public void DestroyByInterface(IDestroyable destroyable);
+    public void DestroyByInterface();
 }

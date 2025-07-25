@@ -25,11 +25,14 @@ public class PlayerRayCasts
 
         if (Physics.Raycast(ray, out RaycastHit hit, _distance))
         {
-            if (hit.collider.TryGetComponent<RainbowMaterialList>(out RainbowMaterialList rml)) //DESPUES LO ARREGLO PORQUE NO CAMBIA EL MOUSE
+            //Testeo de destruccion de paredes. Sujeto a cambios
+            if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
             {
                 _pController.mouseSettings.ChangeCursor(CursorType.Attack);
-                Debug.Log("Attack");
-
+                if (Input.GetMouseButtonDown(0))
+                {
+                    destroyable.DestroyByInterface();
+                }
             }
         }
         else
