@@ -8,14 +8,16 @@ public class PlayerCombo
     private PlayerInputs _pInputs;
     private PlayerStats _pStats;
 
-    [SerializeField] private int _currentComboStep = 0;
-    [SerializeField] private float _comboTimer = 2;
-    [SerializeField] private float _comboCooldownTimer = 0f;
+    [SerializeField] private int _currentComboCount = 0;
+    [SerializeField] private float _comboTimer = 2; //El tiempo espera para continuar el combo con otro ataque o para finalizar el combo, esto también evita que el user spameé y rompa el sistema
+    [SerializeField] private float _comboCooldownAttackTimer = 0f; //El tiempo de espera pos terminar combo para iniciar uno nuevo
     [SerializeField] private bool _isComboActive = false;
 
-    public float testWaitForCombo = 1;
-    public float testWaitForStartCombo = 1;
-    public int testMaxComboSteps;
+    [Header("Test Variables")][Space(5)]
+    public float testCooldownAttackTimer = 1;
+    public int testMaxComboCount = 4;
+    public float testWaitForCombo = 0.6f;
+    
     
     public event Action OnComboStart = () => {Debug.Log("Combo Start");};
     public event Action OnComboEnd = () => {Debug.Log("Combo Start");};
@@ -28,9 +30,9 @@ public class PlayerCombo
 
     public void ComboHandlerUpdate()
     {
-        if (_comboCooldownTimer > 0f)
+        if (_comboCooldownAttackTimer > 0f)
         {
-            _comboCooldownTimer -= Time.deltaTime;
+            _comboCooldownAttackTimer -= Time.deltaTime;
             return;
         }
         
@@ -46,7 +48,7 @@ public class PlayerCombo
             {
                 StartCombo();
             }
-            else
+            else if (_currentComboCount < testMaxComboCount)
             {
                 ContinueCombo();
             }
@@ -69,8 +71,8 @@ public class PlayerCombo
     private void StartCombo()
     {
         _isComboActive = true;
-        _currentComboStep = 1;
-        //_comboTimer = _pStats.p_attackSpeed;
+        _currentComboCount = 1;
+        _comboTimer = _pStats.p_attackSpeed;
         _comboTimer = testWaitForCombo;
 
         OnComboStart?.Invoke();
@@ -78,24 +80,22 @@ public class PlayerCombo
 
     private void ContinueCombo()
     {
-        if (_currentComboStep < testMaxComboSteps)
+        _currentComboCount++;
+        _comboTimer = _pStats.p_attackSpeed;
+
+        if (_currentComboCount >= testMaxComboCount)
         {
-            _currentComboStep++;
-            //_comboTimer = _pStats.p_attackSpeed;
-            _comboTimer = testWaitForCombo;
-        }
-        else
-        {
-            ResetCombo();
+            // Combo máximo alcanzado, no incrementa más
+            _currentComboCount = testMaxComboCount;
         }
     }
 
     private void ResetCombo()
     {
         _isComboActive = false;
-        _currentComboStep = 0;
+        _currentComboCount = 0;
         _comboTimer = 0f;
-        _comboCooldownTimer = testWaitForStartCombo;
+        _comboCooldownAttackTimer = testCooldownAttackTimer;
         
         OnComboEnd?.Invoke();
     }
