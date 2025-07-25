@@ -1124,7 +1124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119548709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18272205, y: -0.000000028412698, z: 0.0000000052805262, w: 0.9831646}
+  m_LocalRotation: {x: 0.18272205, y: 0.000000029300592, z: -0.000000005445542, w: 0.9831646}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2619,7 +2619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: 0.0000000042924304, z: -5.449216e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593865, y: -0.000000017069311, z: 0.0000000021669389, w: 0.9920381}
   m_LocalPosition: {x: -13.9, y: 2.78, z: -2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4318,6 +4318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711309956c023a84d88f107133d6e0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 330585545}
   pCombo:
     _currentComboStep: 0
     _comboTimer: 0
@@ -4338,6 +4339,7 @@ MonoBehaviour:
   coyoteTimer: 0
   gravity: 10
   distance: 14.3
+  rayOffset: 4
   turnSpeed: 10
   mouseTexture:
   - {fileID: 2800000, guid: 34576b79b9b06be43bc1e42675eb631b, type: 3}
@@ -5596,7 +5598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721154971}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: 0.0000000042078647, z: -5.3418603e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593865, y: -0.000000017069869, z: 0.00000000216701, w: 0.9920381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17320,7 +17322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621316299}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: 0.0000000042924304, z: -5.449216e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593865, y: -0.000000017069311, z: 0.0000000021669389, w: 0.9920381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
