@@ -10,6 +10,7 @@ public class PlayerController : Entity
     PlayerInputs pInputs;
     PlayerStats pStats;
     PlayerCollisions pCollisions;
+    SoundControl pSoundControl;
 
     [Header("Dependencies")]
     CharacterController cc;
@@ -49,12 +50,14 @@ public class PlayerController : Entity
         pInputs = new PlayerInputs();
         pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
         pCollisions = new PlayerCollisions();
+        pSoundControl = new SoundControl(pTransform, GetComponent<CharacterAudio>(), this, cc);
 
     }
     private void Update()
     {
         pInputs.InputsUpdate();
         pMovement.MovementUpdate();
+        pSoundControl.SoundControllerUpdate();
         isMoving = pInputs.MoveInput != Vector3.zero;
         isJumping = pInputs.IsJumping;
     }

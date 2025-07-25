@@ -1,56 +1,56 @@
 ﻿using UnityEngine;
 using PlayerData;
-    public class SoundControl : MonoBehaviour
+using FMOD;
+public class SoundControl
     {
-        private CharacterAudio ca;
-        private float timer;
-        private PlayerController controller;
-        private CharacterController cm;
-        private float stepTimer = 0f;
-        private float intervaloPisadas = 0.5f;
-        
-        private void Start()
+        CharacterAudio _ca;
+        PlayerController _controller;
+        CharacterController _cm;
+        Transform _trans;
+        float stepTimer = 0f;
+        float intervaloPisadas = 0.5f;
+        float timer;
+
+    public SoundControl(Transform transform, CharacterAudio characterAudio, PlayerController playerController, CharacterController characterController)
+    {
+        _ca = characterAudio;
+        _controller = playerController;
+        _cm = characterController;
+        _trans = transform;
+    }
+
+        public void SoundControllerUpdate()
         {
-            ca = GetComponent<CharacterAudio>();
-            cm = GetComponent<CharacterController>();
-            controller = GetComponent<PlayerController>();
-        }
-
-        private void Update()
-        {
-
-
-
         if (timer > 0) { timer -= Time.deltaTime; }
-        if (controller.isMoving && cm.isGrounded)
+
+        //Sonido de pisadas
+        if (_controller.isMoving && _cm.isGrounded)
         {
             stepTimer -= Time.deltaTime;
             if (stepTimer <= 0f)
             {
-                Pisadas();
+                Pisadas(_trans.position);
                 stepTimer = intervaloPisadas;
             }
         }
-        //Sonido de salto
-        Salto();
-            //if (controller.isJumping && timer <= 0) { Salto(); }
 
-        //Sonido de pisadas
-        //Pisadas();
+        //Sonido de salto
+        Salto(_trans.position);
         }
-        public void Pisadas()
+
+        public void Pisadas(Vector3 position)
         {
-            if (cm.isGrounded && controller.isMoving)
+            if (_cm.isGrounded && _controller.isMoving)
             {
-                AudioManager.instance.Steps(ca.pasos, transform.position);
+                AudioManager.instance.Steps(_ca.pasos, position);
             }
         }
 
-        public void Salto()
+        public void Salto(Vector3 position)
         {
-            if (controller.isJumping && timer <= 0)
+            if (_controller.isJumping && timer <= 0)
             {
-                AudioManager.instance.PlaySound(ca.salto, transform.position);
+                AudioManager.instance.PlaySound(_ca.salto, position);
                 stepTimer = 0;
                 timer = 1f;
             }
