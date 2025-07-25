@@ -1077,7 +1077,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119548709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18272206, y: 0.0000000036625742, z: -6.8069284e-10, w: 0.98316467}
+  m_LocalRotation: {x: 0.18272206, y: -5.9811326e-17, z: -2.0506996e-16, w: 0.9831646}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2572,7 +2572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: -0.00000000459392, z: 5.831955e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593867, y: -0.0000000042673465, z: 5.417371e-10, w: 0.9920381}
   m_LocalPosition: {x: -13.9, y: 2.78, z: -2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4166,6 +4166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711309956c023a84d88f107133d6e0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pCombo:
+    _currentComboStep: 0
+    _comboTimer: 0
+    _comboCooldownTimer: 0
+    _isComboActive: 0
+    testWaitForCombo: 0
+    testWaitForStartCombo: 0
+    testMaxComboSteps: 0
   damage: 10
   attackSpeed: 2
   maxHealth: 100
@@ -5436,7 +5444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721154971}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: -0.0000000040999235, z: 5.2048293e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593867, y: -0.0000000042673465, z: 5.417371e-10, w: 0.9920381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14485,6 +14493,50 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9130386893770814044, guid: c0be4c2a200db714ab2e439ba9756ef2, type: 3}
+--- !u!1 &1271147058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271147060}
+  - component: {fileID: 1271147061}
+  m_Layer: 0
+  m_Name: DestroyableManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271147060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271147058}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -83.18755, y: -192.17328, z: 51.192303}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1271147061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271147058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cef6d98b803de45a3ef2a1ca07e5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1272623522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6444481740502378477, guid: c0be4c2a200db714ab2e439ba9756ef2,
@@ -17055,7 +17107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621316299}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: -0.00000000459392, z: 5.831955e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593867, y: -0.0000000042673465, z: 5.417371e-10, w: 0.9920381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21106,3 +21158,4 @@ SceneRoots:
   - {fileID: 1333019431}
   - {fileID: 567805024}
   - {fileID: 456144396}
+  - {fileID: 1271147060}
