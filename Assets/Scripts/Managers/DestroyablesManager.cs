@@ -17,7 +17,6 @@ public class DestroyablesManager : MonoBehaviour
         foreach (var walls in destroyableWallsList)
         {
             walls.AddComponent<DestroyableWalls>();
-            print(walls.gameObject.name);
         }
     }
 

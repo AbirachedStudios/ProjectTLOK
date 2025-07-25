@@ -16,8 +16,5 @@ public class DestroyableWalls : MonoBehaviour, IDestroyable
         //Animaciones
         //Sonidos
         //Particulas
-        Debug.Log("Animacion");
-        Debug.Log("Sonido");
-        Debug.Log("Particulas");
     }
 }
