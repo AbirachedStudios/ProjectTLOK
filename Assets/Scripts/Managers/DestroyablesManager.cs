@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class DestroyablesManager : MonoBehaviour
 {
+    public static DestroyablesManager instance;
     //Aca van las listas de cosas destruibles
-    [SerializeField] List<GameObject> destroyableWallsList;
+    public List<GameObject> destroyableWallsList;
+
+    private void Awake() { instance = this; }
 
     void Start()
     {
@@ -18,6 +21,11 @@ public class DestroyablesManager : MonoBehaviour
         {
             walls.AddComponent<DestroyableWalls>();
         }
+    }
+
+    public void CleanList(GameObject go)
+    {
+        destroyableWallsList.Remove(go);
     }
 
     //Aca van los metodos de destruccion de cosas

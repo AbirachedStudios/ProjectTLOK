@@ -9,6 +9,7 @@ public class PlayerRayCasts
     PlayerInputs _pInputs;
     float _distance;
     float _rayOffset;
+    bool canDestroy = false;
     Ray ray;
     Vector3 playerPosition;
 
@@ -32,34 +33,40 @@ public class PlayerRayCasts
             //Testeo de destruccion de paredes. Sujeto a cambios
             if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
             {
+                canDestroy = true;
                 Debug.Log("Destroyable object detected");
             }
         }
+        else canDestroy = false;
     }
     public void CameraRay()
     {
         Vector3 rayPosition = _pController.cam.transform.position + (_pController.cam.transform.up * _rayOffset);
         ray = new Ray(rayPosition, _pController.cam.transform.forward);
-        if(Physics.Raycast(ray, out RaycastHit hit, _distance))
+        if (Physics.Raycast(ray, out RaycastHit hit, _distance))
         {
             if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
             {
-                _pController.mouseSettings.ChangeCursor(CursorType.Attack);
-                if (_pInputs.IsAttacking)
+                if (canDestroy)
                 {
-                    destroyable.DestroyByInterface();
+                    _pController.mouseSettings.ChangeCursor(CursorType.Attack);
+                    if (_pInputs.IsAttacking)
+                    {
+                        destroyable.DestroyByInterface();
+                    }
                 }
-                
                 else
                 {
                     _pController.mouseSettings.ChangeCursor(CursorType.Basic);
                 }
             }
         }
+        _pController.mouseSettings.ChangeCursor(CursorType.Basic);
     }
     public void PlayerRayCastsUpdate()
     {
         EyesRay();
+        CameraRay();
     }
     /*
     private static T GetRandomEnum<T>()
