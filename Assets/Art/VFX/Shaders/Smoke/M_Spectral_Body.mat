@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8297529930479417212
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Spectral_Body
+  m_Shader: {fileID: -6465566751694194690, guid: 7107026b8e2343d4eb75376b445b037f,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Erode_cf3961c4ac0b4893b384b4965e0f99fe_NoiseTex_481144003_Texture2D:
+        m_Texture: {fileID: 2800000, guid: b4718446b8560fe47baa4290e540f69c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: b4718446b8560fe47baa4290e540f69c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: b4718446b8560fe47baa4290e540f69c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8257f87a2f0a48108bf2b9661a98ca76_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: b4718446b8560fe47baa4290e540f69c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_d199c787a1d648ffa6f797a2ef7b23a9_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 09f33811ab2106d409c5a3e126cf6789, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondTex:
+        m_Texture: {fileID: 2800000, guid: ce7240663ca94f648840642289c06f38, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Triplanar_a7ea1bbd25b840368028be3ad7aca9da_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e37a748d92b11ba4782fdb212a48ed24, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Dissolve: 0
+    - _DissolveEmissive: 10
+    - _DissolveScale: 64
+    - _DissolveValue: 0
+    - _DissolveWidth: 0.03
+    - _PanSpeed: 0.25
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _SpeedOffset: -0.25
+    m_Colors:
+    - _Color: {r: 5.313799, g: 23.96862, b: 14.0465, a: 0}
+    - _DissolveColor: {r: 5.3137984, g: 23.968626, b: 14.046501, a: 0}
+    - _DissolveEmissive: {r: 0, g: 1367.12, b: 362.3701, a: 0}
+    - _MainColor: {r: 5.313798, g: 23.968624, b: 14.046499, a: 0}
+    - _colorDissolve: {r: 45.254833, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
