@@ -16,5 +16,6 @@ public class DestroyableWalls : MonoBehaviour, IDestroyable
         //Animaciones
         //Sonidos
         //Particulas
+        DestroyablesManager.instance.CleanList(gameObject);
     }
 }
