@@ -9,13 +9,15 @@ public class PlayerController : Entity
     PlayerMovement pMovement;
     PlayerInputs pInputs;
     PlayerStats pStats;
-    PlayerCollisions pCollisions;
     PlayerRayCasts pRayCasts;
+    PlayerCollisions pCollisions;
+    public MouseSettings mouseSettings;
 
     [Header("Dependencies")]
     CharacterController cc;
-    Camera cam;
+    public Camera cam;
     Transform pTransform;
+    public PlayerCombo pCombo;
 
     [Header("Player Stats")]
     [SerializeField] float damage;
@@ -24,17 +26,20 @@ public class PlayerController : Entity
     [SerializeField] float health;
     [SerializeField] float armor;
     [SerializeField] float walkSpeed;
-    [SerializeField] float sprintSpeed; 
+    [SerializeField] float sprintSpeed;
     [SerializeField] float speedInterpolation;
     [SerializeField] float jumpHeight;
     [SerializeField] float coyoteTimer;
     [SerializeField] float gravity;
-    [SerializeField] float turnSpeed;
+    private float coyoteReset;
 
     [Header("Player Attack")]
     [SerializeField] float distance;
+    [SerializeField] float rayOffset; 
 
-    private float coyoteReset;
+    [Header("Player Mouse")]
+    [SerializeField] float turnSpeed;
+    [SerializeField] Texture2D[] mouseTexture;
 
     private void Awake()
     {
@@ -49,7 +54,9 @@ public class PlayerController : Entity
         pInputs = new PlayerInputs();
         pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
         pCollisions = new PlayerCollisions();
-        pRayCasts = new PlayerRayCasts(this, distance);
+        pRayCasts = new PlayerRayCasts(this, pInputs, distance, rayOffset);
+        mouseSettings = new MouseSettings(mouseTexture);
+        pCombo = new PlayerCombo(pInputs, pStats);
 
     }
     private void Update()
@@ -57,11 +64,17 @@ public class PlayerController : Entity
         pInputs.InputsUpdate();
         pMovement.MovementUpdate();
         pRayCasts.PlayerRayCastsUpdate();
+        pCombo.ComboHandlerUpdate();
+        pCollisions.PlayerCollisionsUpdate();
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawRay(transform.position, transform.forward * distance);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(cam.transform.position + (cam.transform.up * rayOffset), cam.transform.forward * distance);
     }
+    
 }
