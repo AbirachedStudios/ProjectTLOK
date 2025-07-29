@@ -7,6 +7,9 @@ public class Inventory : MonoBehaviour
 {
     public GameObject inventoryPanel; // Assign your InventoryPanel here in the Inspector
     private bool isInventoryOpen = false;
+    public Text treasureCounterText;
+    private int currentTreasureCount = 0; // Variable to store the treasure count
+
 
     void Start()
     {
@@ -16,6 +19,9 @@ public class Inventory : MonoBehaviour
             inventoryPanel.SetActive(false);
         }
         Time.timeScale = 1f; // Ensure game is unpaused at the start
+
+        UpdateTreasureCounterDisplay();
+
     }
 
     void Update()
@@ -50,4 +56,23 @@ public class Inventory : MonoBehaviour
             //Cursor.visible = false; // Hide cursor
         }
     }
+
+    public void AddTreasure(int amount)
+    {
+        currentTreasureCount += amount;
+        UpdateTreasureCounterDisplay(); // Update the UI whenever treasure is added
+        Debug.Log("Treasure collected! Current count: " + currentTreasureCount);
+    }
+
+    /// <summary>
+    /// Updates the UI Text element to display the current treasure count.
+    /// </summary>
+    void UpdateTreasureCounterDisplay()
+    {
+        if (treasureCounterText != null)
+        {
+            treasureCounterText.text = "Treasure: " + currentTreasureCount;
+        }
+    }
+
 }
