@@ -1,0 +1,2 @@
+NPC_01_CHICA.Fbx filter=lfs diff=lfs merge=lfs -text
+01[[:space:]]Chica[[:space:]]Walking.fbx filter=lfs diff=lfs merge=lfs -text
