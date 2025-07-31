@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using PlayerData;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerRayCasts
 {
@@ -10,6 +11,7 @@ public class PlayerRayCasts
     float _distance;
     float _rayOffset;
     bool canDestroy = false;
+    bool canInteract = false;
     Ray ray;
     Vector3 playerPosition;
 
@@ -34,10 +36,14 @@ public class PlayerRayCasts
             if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
             {
                 canDestroy = true;
-                Debug.Log("Destroyable object detected");
+            }
+
+            if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+            {
+                canInteract = true;
             }
         }
-        else canDestroy = false;
+        else canDestroy = false; canInteract = false;
     }
     public void CameraRay()
     {
@@ -58,6 +64,16 @@ public class PlayerRayCasts
                 else
                 {
                     _pController.mouseSettings.ChangeCursor(CursorType.Basic);
+                }
+            }
+            if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+            {
+                if (canInteract)
+                {
+                    if (_pInputs.IsInteracting)
+                    {
+                        Debug.Log("Interaction complete");
+                    }
                 }
             }
         }
