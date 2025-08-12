@@ -1,37 +1,40 @@
 
+using System;
 using UnityEngine;
 using PlayerData;
 
+[Serializable]
 public class PlayerMovement
 {
     //*****-References-****//
 
-    PlayerInputs _pInputs;
-    PlayerStats _pStats;
+    private PlayerInputs _pInputs;
+    private PlayerStats _pStats;
 
-    CharacterController _pController;
+    private CharacterController characterController;
 
     //*****-Variables-****//
 
     //**Movement**//
-    Vector3 _move;
-    Transform _pTransform;
-    Camera _cam;
-    float _storeSpeed;
-    float _speedInterpolation;
-    float _turnSpeed;
+    public Vector3 _move;
+    public bool freeFall;
+    private Transform _pTransform;
+    private Camera _cam;
+    private float _storeSpeed;
+    private float _speedInterpolation;
+    private float _turnSpeed;
 
-    float _coyoteTimer;
-    float _coyoteTimeReset;
+    private float _coyoteTimer;
+    private float _coyoteTimeReset;
 
     //**Jump**//
-    float _downForce;
+    private float _downForce;
 
     public PlayerMovement(PlayerInputs pInputs, PlayerStats pStats, CharacterController controller, Camera cam, float speedInterpolate, float turnSpeed, Transform pTransform, float coyote, float coyoteReset)
     {
         _pInputs = pInputs;
         _pStats = pStats;
-        _pController = controller;
+        characterController = controller;
         _cam = cam;
         _speedInterpolation = speedInterpolate;
         _pTransform = pTransform;
@@ -70,14 +73,14 @@ public class PlayerMovement
 
         _move.y = Gravity();
 
-        _pController.Move(_move * Time.deltaTime);
+        characterController.Move(_move * Time.deltaTime);
     }
 
     void Turn()
     {
         if (Mathf.Abs(_pInputs.MoveInput.x) != 0 || Mathf.Abs(_pInputs.MoveInput.y) != 0)
         {
-            Vector3 currentLookDirection = _pController.velocity.normalized;
+            Vector3 currentLookDirection = characterController.velocity.normalized;
             currentLookDirection.y = 0f;
 
             currentLookDirection.Normalize();
@@ -86,31 +89,13 @@ public class PlayerMovement
             _pTransform.rotation = Quaternion.Slerp(_pTransform.rotation, targetRotation, Time.deltaTime * _turnSpeed);
         }
     }
-    /*
-    private float Gravity()
-    {
-        if(_pController.isGrounded)
-        {
-            _downForce = -1f;
-
-            if(_pInputs.IsJumping)
-            {
-                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
-            }
-        }
-        else
-        {
-            _downForce -= _pStats.p_gravity * Time.deltaTime;
-        }
-        return _downForce;
-    }
-    */
 
     private float Gravity()
     {
-        if (_pController.isGrounded)
+        if (characterController.isGrounded)
         {
             _coyoteTimer = _coyoteTimeReset;
+            freeFall = false;
 
             if (_pInputs.IsJumping)
             {
@@ -124,6 +109,7 @@ public class PlayerMovement
             if(_pInputs.IsJumping && _coyoteTimer > 0f)
             {
                 _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2f);
+                freeFall = true;
                 _coyoteTimer = 0f;
             }
             _downForce -= _pStats.p_gravity * Time.deltaTime;

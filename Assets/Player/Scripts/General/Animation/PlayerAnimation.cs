@@ -1,0 +1,45 @@
+using PlayerData;
+using UnityEngine;
+
+[System.Serializable]
+public class PlayerAnimation
+{
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int Grounded = Animator.StringToHash("Grounded");
+    private static readonly int Jump = Animator.StringToHash("Jump");
+    private static readonly int FreeFall = Animator.StringToHash("FreeFall");
+
+    private Animator _playerAnimator;
+    private PlayerMovement _playerMovement;
+    private PlayerInputs _playerInputs;
+    private CharacterController _characterController;
+    
+    //Suavizado de la velocidad para la animación que no sea tan brusca
+    private float _smoothSpeed;
+    private float _smoothTime = 0.1f;
+    
+    public PlayerAnimation(Animator playerAnimator, PlayerMovement playerMovement, PlayerInputs playerInputs, CharacterController characterController)
+    {
+        _playerAnimator = playerAnimator;
+        _playerMovement = playerMovement;
+        _playerInputs = playerInputs;
+        _characterController = characterController;
+    }
+    
+    
+    public void AnimationUpdate()
+    {
+        if (_playerAnimator)
+        {
+            float targetSpeed = new Vector2(_playerMovement._move.x, _playerMovement._move.z).magnitude;
+            _smoothSpeed = Mathf.Lerp(_smoothSpeed, targetSpeed, Time.deltaTime / _smoothTime);
+            
+            float movementMagnitude = new Vector2(_playerMovement._move.x, _playerMovement._move.z).magnitude;
+            _playerAnimator.SetFloat(Speed, _smoothSpeed);
+            _playerAnimator.SetBool(Jump, _playerInputs.IsJumping);
+            _playerAnimator.SetBool(Grounded, _characterController.isGrounded);
+            _playerAnimator.SetBool(FreeFall, _playerMovement.freeFall);
+        }
+
+    }
+}

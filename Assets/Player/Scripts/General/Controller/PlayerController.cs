@@ -6,18 +6,19 @@ using PlayerData;
 public class PlayerController : Entity
 {
     [Header("References")]
-    PlayerMovement pMovement;
-    PlayerInputs pInputs;
-    PlayerStats pStats;
-    PlayerRayCasts pRayCasts;
-    PlayerCollisions pCollisions;
+    public PlayerMovement playerMovement;
+    private PlayerInputs playerInputs;
+    private PlayerStats playerStats;
+    private PlayerRayCasts playerRayCasts;
+    private PlayerCollisions playerCollisions;
+    private PlayerCombo playerCombo;
+    public PlayerAnimation playerAnimation;
     public MouseSettings mouseSettings;
 
     [Header("Dependencies")]
-    CharacterController cc;
-    public Camera cam;
+    CharacterController characterController;
+    public Camera mainCamera;
     Transform pTransform;
-    public PlayerCombo pCombo;
 
     [Header("Player Stats")]
     [SerializeField] float damage;
@@ -40,32 +41,38 @@ public class PlayerController : Entity
     [Header("Player Mouse")]
     [SerializeField] float turnSpeed;
     [SerializeField] Texture2D[] mouseTexture;
+    
+    [Header("Player Animation")]
+    [SerializeField] Animator playerAnimator;
 
     private void Awake()
     {
         //Primero las referencias
-        cam = Camera.main;
-        cc = GetComponent<CharacterController>();
+        mainCamera = Camera.main;
+        characterController = GetComponent<CharacterController>();
+        playerAnimator = GetComponent<Animator>();
         pTransform = transform;
         coyoteReset = coyoteTimer;
 
         //Luego los constructores
-        pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
-        pInputs = new PlayerInputs();
-        pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
-        pCollisions = new PlayerCollisions();
-        pRayCasts = new PlayerRayCasts(this, pInputs, distance, rayOffset);
+        playerStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
+        playerInputs = new PlayerInputs();
+        playerMovement = new PlayerMovement(playerInputs, playerStats, characterController, mainCamera, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
+        playerCollisions = new PlayerCollisions();
+        playerAnimation = new PlayerAnimation(playerAnimator, playerMovement, playerInputs, characterController);
+        playerRayCasts = new PlayerRayCasts(this, playerInputs, distance, rayOffset);
         mouseSettings = new MouseSettings(mouseTexture);
-        pCombo = new PlayerCombo(pInputs, pStats);
+        playerCombo = new PlayerCombo(playerInputs, playerStats);
 
     }
     private void Update()
     {
-        pInputs.InputsUpdate();
-        pMovement.MovementUpdate();
-        pRayCasts.PlayerRayCastsUpdate();
-        pCombo.ComboHandlerUpdate();
-        pCollisions.PlayerCollisionsUpdate();
+        playerInputs.InputsUpdate();
+        playerMovement.MovementUpdate();
+        playerRayCasts.PlayerRayCastsUpdate();
+        playerCombo.ComboHandlerUpdate();
+        playerCollisions.PlayerCollisionsUpdate();
+        playerAnimation.AnimationUpdate();
     }
 
     private void OnDrawGizmos()
@@ -74,7 +81,7 @@ public class PlayerController : Entity
         Gizmos.DrawRay(transform.position, transform.forward * distance);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(cam.transform.position + (cam.transform.up * rayOffset), cam.transform.forward * distance);
+        Gizmos.DrawRay(mainCamera.transform.position + (mainCamera.transform.up * rayOffset), mainCamera.transform.forward * distance);
     }
     
 }

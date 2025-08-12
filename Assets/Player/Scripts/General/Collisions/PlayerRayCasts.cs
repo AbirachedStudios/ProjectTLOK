@@ -6,14 +6,14 @@ using UnityEngine.XR;
 
 public class PlayerRayCasts
 {
-    PlayerController _pController;
-    PlayerInputs _pInputs;
-    float _distance;
-    float _rayOffset;
-    bool canDestroy = false;
-    bool canInteract = false;
-    Ray ray;
-    Vector3 playerPosition;
+    private PlayerController _pController;
+    private PlayerInputs _pInputs;
+    private float _distance;
+    private float _rayOffset;
+    private bool canDestroy = false;
+    private bool canInteract = false;
+    private Ray ray;
+    private Vector3 playerPosition;
 
 
     public PlayerRayCasts(PlayerController playerController, PlayerInputs pInputs, float distance, float rayOffset)
@@ -47,8 +47,8 @@ public class PlayerRayCasts
     }
     public void CameraRay()
     {
-        Vector3 rayPosition = _pController.cam.transform.position + (_pController.cam.transform.up * _rayOffset);
-        ray = new Ray(rayPosition, _pController.cam.transform.forward);
+        Vector3 rayPosition = _pController.mainCamera.transform.position + (_pController.mainCamera.transform.up * _rayOffset);
+        ray = new Ray(rayPosition, _pController.mainCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, _distance))
         {
             if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
