@@ -11,51 +11,51 @@ public class PlayerStats : IDamageable
     public PlayerStats(MonoBehaviour monoBehaviour, float dmg, float atkSpd, float mxHlth, float hlth, float armr, float wS, float spS, float jpHght, float gravity)
     {
         _monoBehaviour = monoBehaviour;
-        p_damage = dmg;
-        p_attackSpeed = atkSpd;
-        p_maxHealth = mxHlth;
-        p_health = hlth;
-        p_armor = armr;
-        p_walkSpeed = wS;
-        p_sprintSpeed = spS;
-        p_jumpHeight = jpHght;
-        p_gravity = gravity;
+        playerDamage = dmg;
+        playerAttackSpeed = atkSpd;
+        playerMaxHealth = mxHlth;
+        playerHealth = hlth;
+        playerArmor = armr;
+        playerWalkSpeed = wS;
+        playerSprintSpeed = spS;
+        playerJumpHeight = jpHght;
+        playerGravity = gravity;
     }
 
     /***************-VARIABLES-***************/
-    public float p_damage { get; private set; }
-    public float p_attackSpeed { get; private set; }
-    public float p_maxHealth { get; private set; }
-    public float p_health { get; private set; }
-    public float p_armor { get; private set; }
-    public float p_walkSpeed { get; private set; }
-    public float p_sprintSpeed { get; private set; }
-    public float p_jumpHeight { get; private set; }
-    public float p_gravity { get; private set; }
+    public float playerDamage { get; private set; }
+    public float playerAttackSpeed { get; private set; }
+    public float playerMaxHealth { get; private set; }
+    public float playerHealth { get; private set; }
+    public float playerArmor { get; private set; }
+    public float playerWalkSpeed { get; private set; }
+    public float playerSprintSpeed { get; private set; }
+    public float playerJumpHeight { get; private set; }
+    public float playerGravity { get; private set; }
 
 
     /***************-METODOS-***************/
     public void TakeDamage(float damage)
     {
-        p_health -= damage;
+        playerHealth -= damage;
         Die();
     }
     private void Die()
     {
-        if(p_health <= 0)
+        if(playerHealth <= 0)
         {
             //Player Muere
         }
     }
     public void Heal(float healing)
     {
-        if (p_health < p_maxHealth)
+        if (playerHealth < playerMaxHealth)
         {
-            p_health += healing;
+            playerHealth += healing;
 
-            if(p_health >= p_maxHealth)
+            if(playerHealth >= playerMaxHealth)
             {
-                p_health = p_maxHealth;
+                playerHealth = playerMaxHealth;
             }
         }
     }

@@ -72,7 +72,7 @@ public class PlayerCombo
     {
         _isComboActive = true;
         _currentComboCount = 1;
-        _comboTimer = _pStats.p_attackSpeed;
+        _comboTimer = _pStats.playerAttackSpeed;
         _comboTimer = testWaitForCombo;
 
         OnComboStart?.Invoke();
@@ -81,7 +81,7 @@ public class PlayerCombo
     private void ContinueCombo()
     {
         _currentComboCount++;
-        _comboTimer = _pStats.p_attackSpeed;
+        _comboTimer = _pStats.playerAttackSpeed;
 
         if (_currentComboCount >= testMaxComboCount)
         {

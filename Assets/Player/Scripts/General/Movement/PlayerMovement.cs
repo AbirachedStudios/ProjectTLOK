@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using PlayerData;
@@ -7,16 +6,13 @@ using PlayerData;
 public class PlayerMovement
 {
     //*****-References-****//
-
     private PlayerInputs _pInputs;
     private PlayerStats _pStats;
-
     private CharacterController characterController;
 
-    //*****-Variables-****//
 
     //**Movement**//
-    public Vector3 _move;
+    public Vector3 move;
     public bool freeFall;
     private Transform _pTransform;
     private Camera _cam;
@@ -54,29 +50,29 @@ public class PlayerMovement
         Turn();
     }
 
-    void GroundMovement()
+    private void GroundMovement()
     {
-        _move = new Vector3(_pInputs.MoveInput.x, 0f, _pInputs.MoveInput.y);
-        _move = _cam.transform.TransformDirection(_move);
-        _move.Normalize();
+        move = new Vector3(_pInputs.MoveInput.x, 0f, _pInputs.MoveInput.y);
+        move = _cam.transform.TransformDirection(move);
+        move.Normalize();
 
         if(_pInputs.IsRunning)
         {
-            _storeSpeed = Mathf.Lerp(_storeSpeed, _pStats.p_sprintSpeed, _speedInterpolation * Time.deltaTime);
+            _storeSpeed = Mathf.Lerp(_storeSpeed, _pStats.playerSprintSpeed, _speedInterpolation * Time.deltaTime);
         }
         else
         {
-            _storeSpeed = Mathf.Lerp(_storeSpeed, _pStats.p_walkSpeed, _speedInterpolation * Time.deltaTime);
+            _storeSpeed = Mathf.Lerp(_storeSpeed, _pStats.playerWalkSpeed, _speedInterpolation * Time.deltaTime);
         }
 
-        _move *= _storeSpeed;
+        move *= _storeSpeed;
 
-        _move.y = Gravity();
+        move.y = Gravity();
 
-        characterController.Move(_move * Time.deltaTime);
+        characterController.Move(move * Time.deltaTime);
     }
 
-    void Turn()
+    private void Turn()
     {
         if (Mathf.Abs(_pInputs.MoveInput.x) != 0 || Mathf.Abs(_pInputs.MoveInput.y) != 0)
         {
@@ -99,7 +95,7 @@ public class PlayerMovement
 
             if (_pInputs.IsJumping)
             {
-                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
+                _downForce = Mathf.Sqrt(_pStats.playerJumpHeight * _pStats.playerGravity * 2); //Formula general para calcular la fuerza de salto en base a la gravedad
             }
         }
         else
@@ -108,11 +104,11 @@ public class PlayerMovement
 
             if(_pInputs.IsJumping && _coyoteTimer > 0f)
             {
-                _downForce = Mathf.Sqrt(_pStats.p_jumpHeight * _pStats.p_gravity * 2f);
+                _downForce = Mathf.Sqrt(_pStats.playerJumpHeight * _pStats.playerGravity * 2f);
                 freeFall = true;
                 _coyoteTimer = 0f;
             }
-            _downForce -= _pStats.p_gravity * Time.deltaTime;
+            _downForce -= _pStats.playerGravity * Time.deltaTime;
         }
 
         return _downForce;

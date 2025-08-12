@@ -26,15 +26,13 @@ public class PlayerAnimation
         _characterController = characterController;
     }
     
-    
     public void AnimationUpdate()
     {
         if (_playerAnimator)
         {
-            float targetSpeed = new Vector2(_playerMovement._move.x, _playerMovement._move.z).magnitude;
+            float targetSpeed = new Vector2(_playerMovement.move.x, _playerMovement.move.z).magnitude;
             _smoothSpeed = Mathf.Lerp(_smoothSpeed, targetSpeed, Time.deltaTime / _smoothTime);
             
-            float movementMagnitude = new Vector2(_playerMovement._move.x, _playerMovement._move.z).magnitude;
             _playerAnimator.SetFloat(Speed, _smoothSpeed);
             _playerAnimator.SetBool(Jump, _playerInputs.IsJumping);
             _playerAnimator.SetBool(Grounded, _characterController.isGrounded);

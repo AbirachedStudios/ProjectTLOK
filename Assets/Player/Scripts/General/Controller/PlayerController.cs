@@ -1,68 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using PlayerData;
 
 public class PlayerController : Entity
 {
     [Header("References")]
-    public PlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
     private PlayerInputs playerInputs;
     private PlayerStats playerStats;
-    private PlayerRayCasts playerRayCasts;
-    private PlayerCollisions playerCollisions;
-    private PlayerCombo playerCombo;
-    public PlayerAnimation playerAnimation;
+    [SerializeField] private PlayerRayCasts playerRayCasts;
+    [SerializeField] private PlayerCollisions playerCollisions;
+    [SerializeField] private PlayerCombo playerCombo;
+    [SerializeField] private PlayerAnimation playerAnimation;
     public MouseSettings mouseSettings;
 
     [Header("Dependencies")]
-    CharacterController characterController;
     public Camera mainCamera;
-    Transform pTransform;
+    private CharacterController _characterController;
+    private Animator _playerAnimator;
 
     [Header("Player Stats")]
-    [SerializeField] float damage;
-    [SerializeField] float attackSpeed;
-    [SerializeField] float maxHealth;
-    [SerializeField] float health;
-    [SerializeField] float armor;
-    [SerializeField] float walkSpeed;
-    [SerializeField] float sprintSpeed;
-    [SerializeField] float speedInterpolation;
-    [SerializeField] float jumpHeight;
-    [SerializeField] float coyoteTimer;
-    [SerializeField] float gravity;
-    private float coyoteReset;
+    [SerializeField] private float damage;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float health;
+    [SerializeField] private float armor;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float sprintSpeed;
+    [SerializeField] private float speedInterpolation;
+    [SerializeField] private float jumpHeight;
+    [SerializeField] private float coyoteTimer;
+    [SerializeField] private float gravity;
+    [SerializeField] private float coyoteReset;
 
-    [Header("Player Attack")]
-    [SerializeField] float distance;
-    [SerializeField] float rayOffset; 
+    [Space(5)][Header("Player Attack")]
+    [SerializeField] private float distance;
+    [SerializeField] private float rayOffset; 
 
     [Header("Player Mouse")]
-    [SerializeField] float turnSpeed;
-    [SerializeField] Texture2D[] mouseTexture;
+    [SerializeField] private float turnSpeed;
+    [SerializeField] private Texture2D[] mouseTexture;
     
-    [Header("Player Animation")]
-    [SerializeField] Animator playerAnimator;
 
     private void Awake()
     {
         //Primero las referencias
         mainCamera = Camera.main;
-        characterController = GetComponent<CharacterController>();
-        playerAnimator = GetComponent<Animator>();
-        pTransform = transform;
+        _characterController = GetComponent<CharacterController>();
+        _playerAnimator = GetComponent<Animator>();
         coyoteReset = coyoteTimer;
 
         //Luego los constructores
-        playerStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         playerInputs = new PlayerInputs();
-        playerMovement = new PlayerMovement(playerInputs, playerStats, characterController, mainCamera, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
         playerCollisions = new PlayerCollisions();
-        playerAnimation = new PlayerAnimation(playerAnimator, playerMovement, playerInputs, characterController);
+        
+        playerStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
+        playerMovement = new PlayerMovement(playerInputs, playerStats, _characterController, mainCamera, speedInterpolation, turnSpeed, transform, coyoteTimer, coyoteReset);
+        playerAnimation = new PlayerAnimation(_playerAnimator, playerMovement, playerInputs, _characterController);
         playerRayCasts = new PlayerRayCasts(this, playerInputs, distance, rayOffset);
-        mouseSettings = new MouseSettings(mouseTexture);
         playerCombo = new PlayerCombo(playerInputs, playerStats);
+        mouseSettings = new MouseSettings(mouseTexture);
 
     }
     private void Update()
@@ -83,5 +79,4 @@ public class PlayerController : Entity
         Gizmos.color = Color.red;
         Gizmos.DrawRay(mainCamera.transform.position + (mainCamera.transform.up * rayOffset), mainCamera.transform.forward * distance);
     }
-    
 }
