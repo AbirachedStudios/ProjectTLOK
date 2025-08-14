@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class MouseSettings
 {
     Texture2D[] _mouseTexture;

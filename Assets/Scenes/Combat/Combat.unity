@@ -1077,7 +1077,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119548709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18272205, y: 0.000000029300592, z: -0.000000005445542, w: 0.9831646}
+  m_LocalRotation: {x: 0.18272206, y: 1.8361682e-15, z: 2.0506996e-16, w: 0.9831646}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4166,14 +4166,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711309956c023a84d88f107133d6e0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 330585545}
   pCombo:
-    _currentComboCount: 0
+    _currentComboStep: 0
     _comboTimer: 0
-    _comboCooldownAttackTimer: 0
+    _comboCooldownTimer: 0
     _isComboActive: 0
-    testCooldownAttackTimer: 1
-    testMaxComboCount: 4
     testWaitForCombo: 0.6
+    testWaitForStartCombo: 0
+    testMaxComboSteps: 0
   damage: 10
   attackSpeed: 2
   maxHealth: 100
@@ -4186,6 +4187,7 @@ MonoBehaviour:
   coyoteTimer: 0
   gravity: 10
   distance: 14.3
+  rayOffset: 0
   turnSpeed: 10
   mouseTexture:
   - {fileID: 2800000, guid: 34576b79b9b06be43bc1e42675eb631b, type: 3}
@@ -5444,7 +5446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721154971}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: -0.0000000042673465, z: 5.417371e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593867, y: 0.0000000042673465, z: -5.417371e-10, w: 0.9920381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

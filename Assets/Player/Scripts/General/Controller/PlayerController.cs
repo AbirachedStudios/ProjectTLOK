@@ -1,16 +1,15 @@
 using UnityEngine;
-using PlayerData;
 
 public class PlayerController : Entity
 {
     [Header("References")]
-    private PlayerMovement playerMovement;
-    private PlayerInputs playerInputs;
-    private PlayerStats playerStats;
-    [SerializeField] private PlayerRayCasts playerRayCasts;
-    [SerializeField] private PlayerCollisions playerCollisions;
-    [SerializeField] private PlayerCombo playerCombo;
-    [SerializeField] private PlayerAnimation playerAnimation;
+    public PlayerMovement playerMovement;
+    public PlayerInputs playerInputs;
+    public PlayerStats playerStats;
+    public PlayerRayCasts playerRayCasts;
+    public PlayerCollisions playerCollisions;
+    public PlayerAnimation playerAnimation;
+    public PlayerCombo playerCombo;
     public MouseSettings mouseSettings;
 
     [Header("Dependencies")]
@@ -55,9 +54,9 @@ public class PlayerController : Entity
         
         playerStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         playerMovement = new PlayerMovement(playerInputs, playerStats, _characterController, mainCamera, speedInterpolation, turnSpeed, transform, coyoteTimer, coyoteReset);
-        playerAnimation = new PlayerAnimation(_playerAnimator, playerMovement, playerInputs, _characterController);
-        playerRayCasts = new PlayerRayCasts(this, playerInputs, distance, rayOffset);
         playerCombo = new PlayerCombo(playerInputs, playerStats);
+        playerAnimation = new PlayerAnimation(_playerAnimator, playerMovement, playerInputs, _characterController, playerCombo);
+        playerRayCasts = new PlayerRayCasts(this, playerInputs, distance, rayOffset);
         mouseSettings = new MouseSettings(mouseTexture);
 
     }

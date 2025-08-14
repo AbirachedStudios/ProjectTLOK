@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using PlayerData;
 
 [Serializable]
 public class PlayerMovement
@@ -44,6 +43,7 @@ public class PlayerMovement
         Movement();
         Gravity();
     }
+    
     private void Movement()
     {
         GroundMovement();

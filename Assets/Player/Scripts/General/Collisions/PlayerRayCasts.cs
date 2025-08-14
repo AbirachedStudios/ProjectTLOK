@@ -1,9 +1,8 @@
 
-using System.Runtime.CompilerServices;
-using PlayerData;
+using System;
 using UnityEngine;
-using UnityEngine.XR;
 
+[Serializable]
 public class PlayerRayCasts
 {
     private PlayerController _pController;
