@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731c6d22401838e44a57e09d87525d22, type: 3}
+  m_Name: Archivement List
+  m_EditorClassIdentifier: 
+  archivements:
+  - id: 00001
+    cover: {fileID: 0}
+    title: Aprendiz Iniciado
+    description: 
+  - id: 00002
+    cover: {fileID: 0}
+    title: Primera Sangre
+    description: 
+  - id: 00003
+    cover: {fileID: 0}
+    title: Nivel Completado
+    description: 
+  - id: 00004
+    cover: {fileID: 0}
+    title: Explorador del Japon
+    description: 
+  - id: 00005
+    cover: {fileID: 0}
+    title: Conquistador de Yokais
+    description: 
+  - id: 00006
+    cover: {fileID: 0}
+    title: Comprador Novato
+    description: 
+  - id: 00007
+    cover: {fileID: 0}
+    title: Cazador de Recompensas
+    description: 
+  - id: 00008
+    cover: {fileID: 0}
+    title: Buscador de Tesoros
+    description: 
+  - id: 00009
+    cover: {fileID: 0}
+    title: Recolector Avido
+    description: 
+  - id: 00010
+    cover: {fileID: 0}
+    title: Avaro del Yenes
+    description: 
+  - id: 00011
+    cover: {fileID: 0}
+    title: Maestro del Combate
+    description: 
+  - id: 00012
+    cover: {fileID: 0}
+    title: Riqueza Acumulada
+    description: 
+  - id: 00013
+    cover: {fileID: 0}
+    title: Explorador Completo
+    description: 
