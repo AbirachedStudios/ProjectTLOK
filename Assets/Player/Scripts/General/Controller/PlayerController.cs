@@ -41,6 +41,12 @@ public class PlayerController : Entity
     [SerializeField] float turnSpeed;
     [SerializeField] Texture2D[] mouseTexture;
 
+    [Header("Access")]
+    public bool isMoving;
+    public bool isJumping;
+
+    public static PlayerController instance;
+
     private void Awake()
     {
         //Primero las referencias
@@ -66,15 +72,30 @@ public class PlayerController : Entity
         pRayCasts.PlayerRayCastsUpdate();
         pCombo.ComboHandlerUpdate();
         pCollisions.PlayerCollisionsUpdate();
+        isMoving = pInputs.MoveInput != Vector3.zero;
+        isJumping = pInputs.IsJumping;
     }
 
-    private void OnDrawGizmos()
+    public void ChangeStats(int i, float buff, float timer)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position, transform.forward * distance);
+        switch (i)
+        {
+            case 0:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_damage, buff, timer));
+                break;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(cam.transform.position + (cam.transform.up * rayOffset), cam.transform.forward * distance);
+            case 1:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_attackSpeed, buff, timer));
+                break;
+
+            case 2:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_armor, buff, timer));
+                break;
+
+            case 3:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_walkSpeed, buff, timer));
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_sprintSpeed, buff, timer));
+                break;
+        }
     }
-    
 }

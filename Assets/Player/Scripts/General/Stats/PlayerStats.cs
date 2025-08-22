@@ -77,7 +77,7 @@ public class PlayerStats : IDamageable
         yield return new WaitForSeconds(timer);
         stat = reset;
     }
-    private IEnumerator StatFlatChronometer(float stat, float debuf, float timer)
+    public IEnumerator StatFlatChronometer(float stat, float debuf, float timer)
     {
         float reset = stat;
         stat -= debuf;
