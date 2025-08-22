@@ -37,6 +37,8 @@ public class PlayerController : Entity
     public bool isMoving;
     public bool isJumping;
 
+    public static PlayerController instance;
+
     private void Awake()
     {
         //Primero las referencias
@@ -44,9 +46,13 @@ public class PlayerController : Entity
         cc = GetComponent<CharacterController>();
         pTransform = transform;
         coyoteReset = coyoteTimer;
+        if(instance != null)
+        {
+            Debug.Log("Ya hay uno"); Destroy(this);
+        } else { instance = this; }
 
-        //Luego los constructores
-        pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
+            //Luego los constructores
+            pStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
         pInputs = new PlayerInputs();
         pMovement = new PlayerMovement(pInputs, pStats, cc, cam, speedInterpolation, turnSpeed, pTransform, coyoteTimer, coyoteReset);
         pCollisions = new PlayerCollisions();
@@ -60,5 +66,29 @@ public class PlayerController : Entity
         pSoundControl.SoundControllerUpdate();
         isMoving = pInputs.MoveInput != Vector3.zero;
         isJumping = pInputs.IsJumping;
+        Debug.Log(pStats.p_walkSpeed);
+    }
+
+    public void ChangeStats(int i, float buff, float timer)
+    {
+        switch (i)
+        {
+            case 0:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_damage, buff, timer));
+                break;
+
+            case 1:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_attackSpeed, buff, timer));
+                break;
+
+            case 2:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_armor, buff, timer));
+                break;
+
+            case 3:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_walkSpeed, buff, timer));
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_sprintSpeed, buff, timer));
+                break;
+        }
     }
 }
