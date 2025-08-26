@@ -69,9 +69,9 @@ public class PlayerController : Entity
         Debug.Log(pStats.p_walkSpeed);
     }
 
-    public void ChangeStats(int i, float buff, float timer)
+    public void ChangeStats(int i, float buff/*, float timer*/)
     {
-        switch (i)
+        /*switch (i)
         {
             case 0:
                 StartCoroutine(pStats.StatFlatChronometer(pStats.p_damage, buff, timer));
@@ -89,6 +89,7 @@ public class PlayerController : Entity
                 StartCoroutine(pStats.StatFlatChronometer(pStats.p_walkSpeed, buff, timer));
                 StartCoroutine(pStats.StatFlatChronometer(pStats.p_sprintSpeed, buff, timer));
                 break;
-        }
+        }*/
+        StartCoroutine(pStats.BoostStat(i, buff));
     }
 }

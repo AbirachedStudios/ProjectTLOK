@@ -11,7 +11,7 @@ public class TestItem : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerController.instance.ChangeStats(category, boost, 5);
+            PlayerController.instance.ChangeStats(category, boost);
             Destroy(gameObject);
         }
     }

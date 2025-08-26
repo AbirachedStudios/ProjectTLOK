@@ -70,18 +70,76 @@ public class PlayerStats : IDamageable
 
     /***************-CORRUTINAS-***************/
 
-    private IEnumerator StatPercentageChronometer(float stat, float debuf, float timer)
+    public IEnumerator StatPercentageChronometer(float stat, float debuf, float timer)
     {
         float reset = stat;
         stat = (debuf * stat) / 100;
+        Debug.Log("Aumentado de " + reset + " a " + stat);
         yield return new WaitForSeconds(timer);
         stat = reset;
     }
-    private IEnumerator StatFlatChronometer(float stat, float debuf, float timer)
+    public IEnumerator StatFlatChronometer(float stat, float debuf, float timer)
     {
         float reset = stat;
         stat -= debuf;
+        Debug.Log("Aumentado de " + reset + " a " + stat);
         yield return new WaitForSeconds(timer);
+        Debug.Log("Estado reseteado");
         stat = reset;
+    }
+
+    public IEnumerator BoostStat(int category, float boost)
+    {
+        switch (category)
+        {
+            case 0:
+                p_damage += boost;
+
+                Debug.Log("Daño aumentado a " + p_damage);
+                break;
+
+            case 1:
+                p_attackSpeed += boost;
+
+                Debug.Log("Velocidad de ataque aumentada a " + p_attackSpeed);
+                break;
+
+            case 2:
+                p_armor += boost;
+
+                Debug.Log("Armadura aumentada a " + p_armor);
+                break;
+
+            case 3:
+                p_walkSpeed += boost;
+                p_sprintSpeed += boost;
+
+                Debug.Log("Velocidad aumentada a " + p_walkSpeed);
+                break;
+        }
+
+        yield return new WaitForSeconds(5);
+
+        switch (category)
+        {
+            case 0:
+                p_damage -= boost;
+                break;
+
+            case 1:
+                p_attackSpeed -= boost;
+                break;
+
+            case 2:
+                p_armor -= boost;
+                break;
+
+            case 3:
+                p_walkSpeed -= boost;
+                p_sprintSpeed -= boost;
+                break;
+        }
+
+        Debug.Log("reiniciado los estados");
     }
 }
