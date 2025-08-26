@@ -119,4 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   category: 0
-  boost: 0
+  boost: 5
+  itemData: {fileID: 11400000, guid: 3951ece39dbdfa84aa37f2c6ba4dff87, type: 2}

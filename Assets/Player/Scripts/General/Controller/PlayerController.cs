@@ -64,6 +64,8 @@ public class PlayerController : Entity
         mouseSettings = new MouseSettings(mouseTexture);
         pCombo = new PlayerCombo(pInputs, pStats);
 
+        instance = this;
+
     }
     private void Update()
     {

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class TestItem : MonoBehaviour
 {
-    public int category;
-    public float boost;
+    
+
+    public ItemData itemData; // Reference to the Scriptable Object
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerController.instance.ChangeStats(category, boost, 5);
-            Destroy(gameObject);
+            Inventory inventoryManager = FindObjectOfType<Inventory>();
+
+            if (inventoryManager != null)
+            {
+                inventoryManager.AddItem(itemData);
+                //PlayerController.instance.ChangeStats(category, boost, 5);
+                Destroy(gameObject);
+            }
         }
     }
 }
