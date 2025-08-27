@@ -78,26 +78,27 @@ public class PlayerController : Entity
         isJumping = pInputs.IsJumping;
     }
 
-    public void ChangeStats(int i, float buff, float timer)
+    public void ChangeStats(int i, float buff/*, float timer*/)
     {
-        switch (i)
-        {
-            case 0:
-                StartCoroutine(pStats.StatFlatChronometer(pStats.p_damage, buff, timer));
-                break;
+        //switch (i)
+        //{
+        //    case 0:
+        //        StartCoroutine(pStats.StatFlatChronometer(pStats.p_damage, buff, timer));
+        //        break;
 
-            case 1:
-                StartCoroutine(pStats.StatFlatChronometer(pStats.p_attackSpeed, buff, timer));
-                break;
+        //    case 1:
+        //        StartCoroutine(pStats.StatFlatChronometer(pStats.p_attackSpeed, buff, timer));
+        //        break;
 
-            case 2:
-                StartCoroutine(pStats.StatFlatChronometer(pStats.p_armor, buff, timer));
-                break;
+        //    case 2:
+        //        StartCoroutine(pStats.StatFlatChronometer(pStats.p_armor, buff, timer));
+        //        break;
 
-            case 3:
-                StartCoroutine(pStats.StatFlatChronometer(pStats.p_walkSpeed, buff, timer));
-                StartCoroutine(pStats.StatFlatChronometer(pStats.p_sprintSpeed, buff, timer));
-                break;
-        }
+        //    case 3:
+        //        StartCoroutine(pStats.StatFlatChronometer(pStats.p_walkSpeed, buff, timer));
+        //        StartCoroutine(pStats.StatFlatChronometer(pStats.p_sprintSpeed, buff, timer));
+        //        break;
+        //}
+        StartCoroutine(pStats.BoostStat(i, buff));
     }
 }

@@ -84,4 +84,59 @@ public class PlayerStats : IDamageable
         yield return new WaitForSeconds(timer);
         stat = reset;
     }
+
+    public IEnumerator BoostStat(int category, float boost)
+    {
+        switch (category)
+        {
+            case 0:
+                p_damage += boost;
+
+                Debug.Log("Daño aumentado a " + p_damage);
+                break;
+
+            case 1:
+                p_attackSpeed += boost;
+
+                Debug.Log("Velocidad de ataque aumentada a " + p_attackSpeed);
+                break;
+
+            case 2:
+                p_armor += boost;
+
+                Debug.Log("Armadura aumentada a " + p_armor);
+                break;
+
+            case 3:
+                p_walkSpeed += boost;
+                p_sprintSpeed += boost;
+
+                Debug.Log("Velocidad aumentada a " + p_walkSpeed);
+                break;
+        }
+
+        yield return new WaitForSeconds(5);
+
+        switch (category)
+        {
+            case 0:
+                p_damage -= boost;
+                break;
+
+            case 1:
+                p_attackSpeed -= boost;
+                break;
+
+            case 2:
+                p_armor -= boost;
+                break;
+
+            case 3:
+                p_walkSpeed -= boost;
+                p_sprintSpeed -= boost;
+                break;
+        }
+
+        Debug.Log("reiniciado los estados");
+    }
 }

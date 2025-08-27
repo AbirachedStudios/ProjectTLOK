@@ -130,7 +130,7 @@ public class Inventory : MonoBehaviour
             switch (itemToUse.itemName)
             {
                 case "Buff":
-                    PlayerController.instance.ChangeStats(0, 10f, 5);
+                    PlayerController.instance.ChangeStats(0, 10f);
                     break;
             }
 
