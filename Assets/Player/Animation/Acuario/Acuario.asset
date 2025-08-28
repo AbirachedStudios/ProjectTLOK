@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 752b1510bb32dd2429c872a66b9e26e2, type: 2}
   - {fileID: 7400000, guid: 3454210cda156c54d97f334bed587cdf, type: 2}
   - {fileID: 7400000, guid: 3bb42c2dbd2cea940b9227e3791d6373, type: 2}
+  - {fileID: 7400000, guid: c84bc638f8815fa429b27c4686444002, type: 2}
   m_chargedAttackAnimationClip: {fileID: 7400000, guid: 4a2b011ad5cbcdd4fa74f0204a801a99,
     type: 2}
   m_specialAttackAnimationClip: {fileID: 0}

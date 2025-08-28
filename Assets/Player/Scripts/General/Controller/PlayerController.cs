@@ -2,6 +2,17 @@ using UnityEngine;
 
 public class PlayerController : Entity
 {
+    #region Dependencies
+
+    [Header("Dependencies")]
+    private Camera _mainCamera;
+    private CharacterController _characterController;
+    private Animator _playerAnimator;
+
+    #endregion
+
+    #region References
+
     [Header("References")]
     public PlayerMovement playerMovement;
     public PlayerInputs playerInputs;
@@ -12,11 +23,9 @@ public class PlayerController : Entity
     public PlayerCombo playerCombo;
     public MouseSettings mouseSettings;
 
-    [Header("Dependencies")]
-    public Camera mainCamera;
-    private CharacterController _characterController;
-    private Animator _playerAnimator;
+    #endregion
 
+    #region Player Configs
     [Header("Player Stats")]
     [SerializeField] private float damage;
     [SerializeField] private float attackSpeed;
@@ -30,7 +39,7 @@ public class PlayerController : Entity
     [SerializeField] private float coyoteTimer;
     [SerializeField] private float gravity;
     [SerializeField] private float coyoteReset;
-
+    
     [Space(5)][Header("Player Attack")]
     [SerializeField] private float distance;
     [SerializeField] private float rayOffset; 
@@ -38,27 +47,30 @@ public class PlayerController : Entity
     [Header("Player Mouse")]
     [SerializeField] private float turnSpeed;
     [SerializeField] private Texture2D[] mouseTexture;
-    
+    #endregion
 
     private void Awake()
     {
         //Primero las referencias
-        mainCamera = Camera.main;
+        _mainCamera = Camera.main;
         _characterController = GetComponent<CharacterController>();
         _playerAnimator = GetComponent<Animator>();
         coyoteReset = coyoteTimer;
 
-        //Luego los constructores
+        //Luego los constructores en orden de dependencia
         playerInputs = new PlayerInputs();
+        playerRayCasts = new PlayerRayCasts(this,_mainCamera, playerInputs, distance, rayOffset);
+        
         playerCollisions = new PlayerCollisions();
         
         playerStats = new PlayerStats(this, damage, attackSpeed, maxHealth, health, armor, walkSpeed, sprintSpeed, jumpHeight, gravity);
-        playerMovement = new PlayerMovement(playerInputs, playerStats, _characterController, mainCamera, speedInterpolation, turnSpeed, transform, coyoteTimer, coyoteReset);
-        playerCombo = new PlayerCombo(playerInputs, playerStats);
+        
+        playerMovement = new PlayerMovement(playerInputs, playerStats, _characterController, _mainCamera, speedInterpolation, turnSpeed, transform, coyoteTimer, coyoteReset);
+        
+        playerCombo = new PlayerCombo(playerInputs, playerStats, playerRayCasts);
         playerAnimation = new PlayerAnimation(_playerAnimator, playerMovement, playerInputs, _characterController, playerCombo);
-        playerRayCasts = new PlayerRayCasts(this, playerInputs, distance, rayOffset);
+        
         mouseSettings = new MouseSettings(mouseTexture);
-
     }
     private void Update()
     {
@@ -72,10 +84,12 @@ public class PlayerController : Entity
 
     private void OnDrawGizmos()
     {
+        _mainCamera = Camera.main;
+        
         Gizmos.color = Color.yellow;
         Gizmos.DrawRay(transform.position, transform.forward * distance);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(mainCamera.transform.position + (mainCamera.transform.up * rayOffset), mainCamera.transform.forward * distance);
+        Gizmos.DrawRay(_mainCamera.transform.position + (_mainCamera.transform.up * rayOffset), _mainCamera.transform.forward * distance);
     }
 }

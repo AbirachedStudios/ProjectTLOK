@@ -4,8 +4,9 @@ using UnityEngine;
 [Serializable]
 public class PlayerCombo
 {
-    private PlayerInputs _pInputs;
-    private PlayerStats _pStats;
+    private PlayerInputs _playerInputs;
+    private PlayerStats _playerStats;
+    private PlayerRayCasts _playerRaycast;
 
     [SerializeField] public int _currentComboCount = 0;
     [SerializeField] private float _comboTimer = 2; //El tiempo espera para continuar el combo con otro ataque o para finalizar el combo, esto también evita que el user spameé y rompa el sistema
@@ -16,21 +17,29 @@ public class PlayerCombo
     [Header("Test Variables")][Space(5)]
     public float testCooldownAttackTimer = 1;
     public int testMaxComboCount = 4;
-    public float testWaitForCombo = 0.6f;
+    public float testWaitForCombo = 1.6f;
     
+    public Transform currentTarget;
     
-    public event Action OnComboStart = () => {Debug.Log("Combo Start");};
-    public event Action OnComboEnd = () => {Debug.Log("Combo Start");};
-
-    public PlayerCombo(PlayerInputs pInputs, PlayerStats pStats)
+    public event Action OnComboStart = () =>
     {
-        _pInputs = pInputs;
-        _pStats = pStats;
+        //Debug.Log("Combo Start");
+    };
+    public event Action OnComboEnd = () =>
+    {
+        //Debug.Log("Combo Start");
+    };
+
+    public PlayerCombo(PlayerInputs playerInputs, PlayerStats playerStats, PlayerRayCasts playerRaycast)
+    {
+        _playerInputs   = playerInputs;
+        _playerStats    = playerStats;
+        _playerRaycast  = playerRaycast;
     }
 
     public void ComboHandlerUpdate()
     {
-        if (_comboCooldownAttackTimer > 0f)
+        if (_comboCooldownAttackTimer >= 0f)
         {
             _comboCooldownAttackTimer -= Time.deltaTime;
             return;
@@ -42,7 +51,11 @@ public class PlayerCombo
 
     private void HandleComboInput()
     {
-        if (_pInputs.IsAttacking && !_isDoingCombo)
+        if (!_playerRaycast.canDestroy && !currentTarget)
+            return;
+        
+        
+        if (_playerInputs.IsAttacking && !_isDoingCombo)
         {
             if (!_isActive)
             {
@@ -74,16 +87,17 @@ public class PlayerCombo
     {
         _isActive = true;
         _currentComboCount = 1;
-        _comboTimer = _pStats.playerAttackSpeed;
+        _comboTimer = _playerStats.playerAttackSpeed;
         _comboTimer = testWaitForCombo;
 
+        currentTarget = _playerRaycast.destroyableTransform;
         OnComboStart?.Invoke();
     }
 
     private void ContinueCombo()
     {
         _currentComboCount++;
-        _comboTimer = _pStats.playerAttackSpeed;
+        _comboTimer = _playerStats.playerAttackSpeed;
 
         if (_currentComboCount >= testMaxComboCount)
         {
@@ -100,6 +114,7 @@ public class PlayerCombo
         _isDoingCombo = false;
         _comboCooldownAttackTimer = testCooldownAttackTimer;
         
+        currentTarget = null;
         OnComboEnd?.Invoke();
     }
 

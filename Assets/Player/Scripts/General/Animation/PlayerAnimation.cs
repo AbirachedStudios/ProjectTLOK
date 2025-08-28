@@ -26,6 +26,11 @@ public class PlayerAnimation
         _playerInputs = playerInputs;
         _characterController = characterController;
         _playerCombo = playerCombo;
+
+        foreach (var behaviour in playerAnimator.GetBehaviours<LockMovementSMBehaviour>())
+        {
+            behaviour.Initialize(playerMovement);
+        }
     }
     
     public void AnimationUpdate()

@@ -2,7 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Entity
+public class Enemy : Entity, IDestroyable, IDamageable
 {
-   //Aca va toda la logica que relacione los enemigos Melee con los Rango. Todas las cosas que tengan estos en comun
+   public float life = 100;
+   public void TakeDamage(float num)
+   {
+      life -= num;
+   }
+
+   public void DestroyByInterface()
+   {
+      
+   }
 }

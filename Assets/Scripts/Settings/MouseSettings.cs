@@ -25,7 +25,9 @@ public class MouseSettings
                 cursors[cursorType] = texture;
             }
         }
+        
         CursorLock(CursorType.Basic);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void CursorUnlock(CursorType type)

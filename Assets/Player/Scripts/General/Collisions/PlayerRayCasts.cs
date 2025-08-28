@@ -9,48 +9,67 @@ public class PlayerRayCasts
     private PlayerInputs _pInputs;
     private float _distance;
     private float _rayOffset;
-    private bool canDestroy = false;
-    private bool canInteract = false;
+    public bool canDestroy = false;
+    public bool canInteract = false;
     private Ray ray;
     private Vector3 playerPosition;
+    private Camera _mainCamera;
 
-
-    public PlayerRayCasts(PlayerController playerController, PlayerInputs pInputs, float distance, float rayOffset)
+    public Transform destroyableTransform;
+    public Transform interactableTransform;
+    
+    public PlayerRayCasts(PlayerController playerController, Camera mainCamera, PlayerInputs pInputs, float distance, float rayOffset)
     {
         _distance = distance;
+        _mainCamera = mainCamera;
         _rayOffset = rayOffset; 
         _pController = playerController;
         _pInputs = pInputs;
     }
 
+    [SerializeField] private float interactionRadius = 0.5f;
+
     private void EyesRay()
     {
         playerPosition = _pController.transform.position;
-
         ray = new Ray(playerPosition, _pController.transform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, _distance))
+        if (Physics.SphereCast(ray, interactionRadius, out RaycastHit hit, _distance))
         {
-            //Testeo de destruccion de paredes. Sujeto a cambios
-            if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
+            var destroyable = hit.collider.GetComponent<IDestroyable>();
+            if (destroyable != null)
             {
                 canDestroy = true;
+                destroyableTransform = hit.transform;
+                return;
             }
 
-            if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+            var interactable = hit.collider.GetComponent<IInteractable>();
+            if (interactable != null)
             {
                 canInteract = true;
+                interactableTransform = hit.transform;
+                return;
             }
         }
-        else canDestroy = false; canInteract = false;
+        else
+        {
+            canDestroy = false;
+            canInteract = false;
+            
+            destroyableTransform = null;
+            interactableTransform = null;
+        }
     }
     public void CameraRay()
     {
-        Vector3 rayPosition = _pController.mainCamera.transform.position + (_pController.mainCamera.transform.up * _rayOffset);
-        ray = new Ray(rayPosition, _pController.mainCamera.transform.forward);
+        Vector3 rayPosition = _mainCamera.transform.position + (_mainCamera.transform.up * _rayOffset);
+        ray = new Ray(rayPosition, _mainCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, _distance))
         {
-            if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
+            var destroyable = hit.collider.GetComponent<IDestroyable>();
+
+            if (destroyable != null)
             {
                 if (canDestroy)
                 {
@@ -65,7 +84,10 @@ public class PlayerRayCasts
                     _pController.mouseSettings.ChangeCursor(CursorType.Basic);
                 }
             }
-            if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+            
+            var interactable = hit.collider.GetComponent<IInteractable>();
+
+            if (interactable != null)
             {
                 if (canInteract)
                 {

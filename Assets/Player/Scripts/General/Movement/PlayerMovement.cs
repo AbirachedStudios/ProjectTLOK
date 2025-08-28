@@ -9,10 +9,11 @@ public class PlayerMovement
     private PlayerStats _pStats;
     private CharacterController characterController;
 
-
     //**Movement**//
-    public Vector3 move;
     public bool freeFall;
+    [HideInInspector] public Vector3 move;
+    public bool canMove;
+    
     private Transform _pTransform;
     private Camera _cam;
     private float _storeSpeed;
@@ -36,6 +37,8 @@ public class PlayerMovement
         _turnSpeed = turnSpeed;
         _coyoteTimer = coyote;
         _coyoteTimeReset = coyoteReset;
+        
+        canMove = true;
     }
 
     public void MovementUpdate()
@@ -52,6 +55,9 @@ public class PlayerMovement
 
     private void GroundMovement()
     {
+        if (!canMove)
+            return;
+        
         move = new Vector3(_pInputs.MoveInput.x, 0f, _pInputs.MoveInput.y);
         move = _cam.transform.TransformDirection(move);
         move.Normalize();
@@ -76,13 +82,15 @@ public class PlayerMovement
     {
         if (Mathf.Abs(_pInputs.MoveInput.x) != 0 || Mathf.Abs(_pInputs.MoveInput.y) != 0)
         {
-            Vector3 currentLookDirection = characterController.velocity.normalized;
+            Vector3 currentLookDirection = characterController.velocity;
             currentLookDirection.y = 0f;
 
-            currentLookDirection.Normalize();
-
-            Quaternion targetRotation = Quaternion.LookRotation(currentLookDirection);
-            _pTransform.rotation = Quaternion.Slerp(_pTransform.rotation, targetRotation, Time.deltaTime * _turnSpeed);
+            if (currentLookDirection.sqrMagnitude > 0.001f)
+            {
+                currentLookDirection.Normalize();
+                Quaternion targetRotation = Quaternion.LookRotation(currentLookDirection);
+                _pTransform.rotation = Quaternion.Slerp(_pTransform.rotation, targetRotation, Time.deltaTime * _turnSpeed);
+            }
         }
     }
 
@@ -105,8 +113,11 @@ public class PlayerMovement
             if(_pInputs.IsJumping && _coyoteTimer > 0f)
             {
                 _downForce = Mathf.Sqrt(_pStats.playerJumpHeight * _pStats.playerGravity * 2f);
-                freeFall = true;
                 _coyoteTimer = 0f;
+            }
+            else
+            {
+                freeFall = true;
             }
             _downForce -= _pStats.playerGravity * Time.deltaTime;
         }
