@@ -9,6 +9,7 @@ public class PlayerController : Entity
     [Header("Dependencies")]
     private Camera _mainCamera;
     private CharacterController _characterController;
+    private CharacterAudio _characterAudio;
     private Animator _playerAnimator;
 
     #endregion
@@ -60,17 +61,21 @@ public class PlayerController : Entity
 
     private void Awake()
     {
-        //Primero las referencias
-        _mainCamera = Camera.main;
-        _characterController = GetComponent<CharacterController>();
-        _playerAnimator = GetComponent<Animator>();
-        coyoteReset = coyoteTimer;
-
         if(instance != null)
         {
             Debug.Log("Ya hay uno"); Destroy(this);
         } 
         else { instance = this; }
+        
+        //Primero las referencias
+        _mainCamera = Camera.main;
+        _characterController = GetComponent<CharacterController>();
+        _playerAnimator = GetComponent<Animator>();
+        _characterAudio = GetComponent<CharacterAudio>();
+        
+        coyoteReset = coyoteTimer;
+
+        
 
         
         //Luego los constructores en orden de dependencia
@@ -86,7 +91,7 @@ public class PlayerController : Entity
         playerCombo = new PlayerCombo(playerInputs, playerStats, playerRayCasts);
         playerAnimation = new PlayerAnimation(_playerAnimator, playerMovement, playerInputs, _characterController, playerCombo);
         
-        pSoundControl = new SoundControl(transform, GetComponent<CharacterAudio>(), this, _characterController);
+        pSoundControl = new SoundControl(_characterController.transform, _characterAudio, this, _characterController);
         mouseSettings = new MouseSettings(mouseTexture);
     }
     private void Update()

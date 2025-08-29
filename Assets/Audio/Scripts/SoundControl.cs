@@ -13,31 +13,31 @@ public class SoundControl
     private float intervaloPisadas = 0.5f;
     private float timer;
 
-public SoundControl(Transform transform, CharacterAudio characterAudio, PlayerController playerController, CharacterController characterController)
-{
-    _ca = characterAudio;
-    _controller = playerController;
-    _cm = characterController;
-    _trans = transform;
-}
+    public SoundControl(Transform transform, CharacterAudio characterAudio, PlayerController playerController, CharacterController characterController)
+    {
+        _ca = characterAudio;
+        _controller = playerController;
+        _cm = characterController;
+        _trans = transform;
+    }
 
     public void SoundControllerUpdate()
     {
-    if (timer > 0) { timer -= Time.deltaTime; }
+        if (timer > 0) { timer -= Time.deltaTime; }
 
-    //Sonido de pisadas
-    if (_controller.isMoving && _cm.isGrounded)
-    {
-        stepTimer -= Time.deltaTime;
-        if (stepTimer <= 0f)
+        //Sonido de pisadas
+        if (_controller.isMoving && _cm.isGrounded)
         {
-            Pisadas(_trans.position);
-            stepTimer = intervaloPisadas;
+            stepTimer -= Time.deltaTime;
+            if (stepTimer <= 0f)
+            {
+                Pisadas(_trans.position);
+                stepTimer = intervaloPisadas;
+            }
         }
-    }
 
-    //Sonido de salto
-    Salto(_trans.position);
+        //Sonido de salto
+        Salto(_trans.position);
     }
 
     public void Pisadas(Vector3 position)
