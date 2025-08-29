@@ -74,6 +74,7 @@ public class PlayerStats : IDamageable
     {
         float reset = stat;
         stat = (debuf * stat) / 100;
+        Debug.Log("Aumentado de " + reset + " a " + stat);
         yield return new WaitForSeconds(timer);
         stat = reset;
     }
@@ -81,7 +82,64 @@ public class PlayerStats : IDamageable
     {
         float reset = stat;
         stat -= debuf;
+        Debug.Log("Aumentado de " + reset + " a " + stat);
         yield return new WaitForSeconds(timer);
+        Debug.Log("Estado reseteado");
         stat = reset;
+    }
+
+    public IEnumerator BoostStat(int category, float boost)
+    {
+        switch (category)
+        {
+            case 0:
+                playerDamage += boost;
+
+                Debug.Log("Da�o aumentado a " + playerDamage);
+                break;
+
+            case 1:
+                p_attackSpeed += boost;
+
+                Debug.Log("Velocidad de ataque aumentada a " + p_attackSpeed);
+                break;
+
+            case 2:
+                p_armor += boost;
+
+                Debug.Log("Armadura aumentada a " + p_armor);
+                break;
+
+            case 3:
+                p_walkSpeed += boost;
+                p_sprintSpeed += boost;
+
+                Debug.Log("Velocidad aumentada a " + p_walkSpeed);
+                break;
+        }
+
+        yield return new WaitForSeconds(5);
+
+        switch (category)
+        {
+            case 0:
+                p_damage -= boost;
+                break;
+
+            case 1:
+                p_attackSpeed -= boost;
+                break;
+
+            case 2:
+                p_armor -= boost;
+                break;
+
+            case 3:
+                p_walkSpeed -= boost;
+                p_sprintSpeed -= boost;
+                break;
+        }
+
+        Debug.Log("reiniciado los estados");
     }
 }

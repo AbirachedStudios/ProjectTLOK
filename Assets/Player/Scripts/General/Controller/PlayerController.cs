@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : Entity
@@ -8,6 +10,7 @@ public class PlayerController : Entity
     private Camera _mainCamera;
     private CharacterController _characterController;
     private Animator _playerAnimator;
+    Transform pTransform;
 
     #endregion
 
@@ -22,6 +25,7 @@ public class PlayerController : Entity
     public PlayerAnimation playerAnimation;
     public PlayerCombo playerCombo;
     public MouseSettings mouseSettings;
+    public SoundControl pSoundControl;
 
     #endregion
 
@@ -48,6 +52,12 @@ public class PlayerController : Entity
     [SerializeField] private float turnSpeed;
     [SerializeField] private Texture2D[] mouseTexture;
     #endregion
+    
+    [Header("Access")]
+    public bool isMoving;
+    public bool isJumping;
+
+    public static PlayerController instance;
 
     private void Awake()
     {
@@ -57,6 +67,15 @@ public class PlayerController : Entity
         _playerAnimator = GetComponent<Animator>();
         coyoteReset = coyoteTimer;
 
+        if(instance != null)
+        {
+            Debug.Log("Ya hay uno"); Destroy(this);
+        } 
+        else { instance = this; }
+
+        
+
+        
         //Luego los constructores en orden de dependencia
         playerInputs = new PlayerInputs();
         playerRayCasts = new PlayerRayCasts(this,_mainCamera, playerInputs, distance, rayOffset);
@@ -70,6 +89,7 @@ public class PlayerController : Entity
         playerCombo = new PlayerCombo(playerInputs, playerStats, playerRayCasts);
         playerAnimation = new PlayerAnimation(_playerAnimator, playerMovement, playerInputs, _characterController, playerCombo);
         
+        pSoundControl = new SoundControl(pTransform, GetComponent<CharacterAudio>(), this, _characterController);
         mouseSettings = new MouseSettings(mouseTexture);
     }
     private void Update()
@@ -80,6 +100,10 @@ public class PlayerController : Entity
         playerCombo.ComboHandlerUpdate();
         playerCollisions.PlayerCollisionsUpdate();
         playerAnimation.AnimationUpdate();
+        
+        pSoundControl.SoundControllerUpdate();
+        isMoving = playerInputs.MoveInput != Vector3.zero;
+        isJumping = playerInputs.IsJumping;
     }
 
     private void OnDrawGizmos()
@@ -91,5 +115,29 @@ public class PlayerController : Entity
 
         Gizmos.color = Color.red;
         Gizmos.DrawRay(_mainCamera.transform.position + (_mainCamera.transform.up * rayOffset), _mainCamera.transform.forward * distance);
+    }
+    
+    public void ChangeStats(int i, float buff/*, float timer*/)
+    {
+        /*switch (i)
+        {
+            case 0:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_damage, buff, timer));
+                break;
+
+            case 1:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_attackSpeed, buff, timer));
+                break;
+
+            case 2:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_armor, buff, timer));
+                break;
+
+            case 3:
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_walkSpeed, buff, timer));
+                StartCoroutine(pStats.StatFlatChronometer(pStats.p_sprintSpeed, buff, timer));
+                break;
+        }*/
+        StartCoroutine(playerStats.BoostStat(i, buff));
     }
 }
