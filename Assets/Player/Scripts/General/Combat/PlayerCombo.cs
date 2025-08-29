@@ -19,7 +19,7 @@ public class PlayerCombo
     public int testMaxComboCount = 4;
     public float testWaitForCombo = 1.6f;
     
-    public Transform currentTarget;
+    public IDamageable currentTarget;
     
     public event Action OnComboStart = () =>
     {
@@ -51,7 +51,7 @@ public class PlayerCombo
 
     private void HandleComboInput()
     {
-        if (!_playerRaycast.canDestroy && !currentTarget)
+        if (!_playerRaycast.canDestroy && currentTarget == null)
             return;
         
         
@@ -90,7 +90,7 @@ public class PlayerCombo
         _comboTimer = _playerStats.playerAttackSpeed;
         _comboTimer = testWaitForCombo;
 
-        currentTarget = _playerRaycast.destroyableTransform;
+        currentTarget = _playerRaycast.destroyableTarget;
         OnComboStart?.Invoke();
     }
 

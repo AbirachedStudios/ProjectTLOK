@@ -18,4 +18,11 @@ public class DestroyableWalls : MonoBehaviour, IDestroyable
         //Particulas
         DestroyablesManager.instance.CleanList(gameObject);
     }
+
+    public void TakeDamage(float num)
+    {
+        
+    }
+
+    public Transform damageableTransform { get; set; }
 }

@@ -1,5 +1,7 @@
 
-public interface IDestroyable
+using UnityEngine;
+
+public interface IDestroyable : IDamageable
 {
     public void DestroyByInterface();
 }

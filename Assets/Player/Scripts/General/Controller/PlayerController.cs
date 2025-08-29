@@ -103,13 +103,15 @@ public class PlayerController : Entity
         isJumping = playerInputs.IsJumping;
     }
 
+    public float offset;
     private void OnDrawGizmos()
     {
         _mainCamera = Camera.main;
         
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position, transform.forward * distance);
-
+        Vector3 origin = transform.position - transform.forward * offset;
+        Gizmos.DrawRay(origin, transform.forward * distance);
+        
         Gizmos.color = Color.red;
         Gizmos.DrawRay(_mainCamera.transform.position + (_mainCamera.transform.up * rayOffset), _mainCamera.transform.forward * distance);
     }

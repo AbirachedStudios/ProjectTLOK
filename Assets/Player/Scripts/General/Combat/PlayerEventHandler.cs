@@ -17,15 +17,17 @@ public class PlayerEventHandler : MonoBehaviour
 
     public void MoveTowardsTargetAnimationEvent(float duration = 0.3f)
     {
-        float deltaDistance = 0.8f;
+        float deltaDistance = 1.5f;
         if(_playerCombo.currentTarget == null) return;
-            MoveTowardsTarget(_playerCombo.currentTarget.position, deltaDistance,duration);
+            MoveTowardsTarget(_playerCombo.currentTarget.damageableTransform.position, deltaDistance,duration);
     }
     
     public void AttackAnimationEvent()
     {
         //Evento que es cuando el jugador hace daño
-        //MakeDamage() por ejemplo
+        if(_playerCombo.currentTarget == null) return;
+        _playerCombo.currentTarget.TakeDamage(20);
+        //_playerCombo.currentTarget
     }
     
     public void AttackEndAnimationEvent()

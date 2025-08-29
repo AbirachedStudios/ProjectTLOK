@@ -1124,7 +1124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119548709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18272206, y: 1.8361682e-15, z: 2.0506996e-16, w: 0.9831646}
+  m_LocalRotation: {x: 0.18272205, y: -0.00000002930059, z: 0.000000005445542, w: 0.9831646}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4340,6 +4340,8 @@ MonoBehaviour:
     testMaxComboCount: 0
     testWaitForCombo: 1.6
     currentTarget: {fileID: 0}
+  pSoundControl:
+    _trans: {fileID: 0}
   damage: 10
   attackSpeed: 2
   maxHealth: 100
@@ -4358,6 +4360,8 @@ MonoBehaviour:
   mouseTexture:
   - {fileID: 2800000, guid: 34576b79b9b06be43bc1e42675eb631b, type: 3}
   - {fileID: 2800000, guid: caeb7caa0b4c08241a09b67af14aa7d4, type: 3}
+  isMoving: 0
+  isJumping: 0
 --- !u!95 &534396261
 Animator:
   serializedVersion: 5

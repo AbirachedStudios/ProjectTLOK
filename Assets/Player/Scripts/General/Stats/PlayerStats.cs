@@ -40,6 +40,9 @@ public class PlayerStats : IDamageable
         playerHealth -= damage;
         Die();
     }
+
+    public Transform damageableTransform { get; set; }
+
     private void Die()
     {
         if(playerHealth <= 0)

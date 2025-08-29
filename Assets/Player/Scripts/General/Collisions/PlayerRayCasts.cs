@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerRayCasts
 {
-    private PlayerController _pController;
-    private PlayerInputs _pInputs;
+    private PlayerController _playerController;
+    private PlayerInputs _playerInputs;
     private float _distance;
     private float _rayOffset;
     public bool canDestroy = false;
@@ -15,32 +15,40 @@ public class PlayerRayCasts
     private Vector3 playerPosition;
     private Camera _mainCamera;
 
-    public Transform destroyableTransform;
+    public IDamageable destroyableTarget;
     public Transform interactableTransform;
+    public LayerMask rayCastLayerMask;
     
-    public PlayerRayCasts(PlayerController playerController, Camera mainCamera, PlayerInputs pInputs, float distance, float rayOffset)
+    public PlayerRayCasts(PlayerController playerController, Camera mainCamera, PlayerInputs playerInputs, float distance, float rayOffset)
     {
         _distance = distance;
         _mainCamera = mainCamera;
         _rayOffset = rayOffset; 
-        _pController = playerController;
-        _pInputs = pInputs;
+        _playerController = playerController;
+        _playerInputs = playerInputs;
+        rayCastLayerMask = LayerMask.GetMask("Interactable");
     }
 
     [SerializeField] private float interactionRadius = 0.5f;
 
     private void EyesRay()
     {
-        playerPosition = _pController.transform.position;
-        ray = new Ray(playerPosition, _pController.transform.forward);
+        playerPosition = _playerController.transform.position;
+        
+        
+        Vector3 origin = playerPosition - _playerController.transform.forward * 0.3f;
+
+        ray = new Ray(origin, _playerController.transform.forward);
+        
 
         if (Physics.SphereCast(ray, interactionRadius, out RaycastHit hit, _distance))
         {
-            var destroyable = hit.collider.GetComponent<IDestroyable>();
-            if (destroyable != null)
+            var damageable = hit.collider.GetComponent<IDamageable>();
+            if (damageable != null)
             {
                 canDestroy = true;
-                destroyableTransform = hit.transform;
+                destroyableTarget = damageable;
+                destroyableTarget.damageableTransform = hit.transform;
                 return;
             }
 
@@ -57,7 +65,7 @@ public class PlayerRayCasts
             canDestroy = false;
             canInteract = false;
             
-            destroyableTransform = null;
+            destroyableTarget = null;
             interactableTransform = null;
         }
     }
@@ -65,7 +73,8 @@ public class PlayerRayCasts
     {
         Vector3 rayPosition = _mainCamera.transform.position + (_mainCamera.transform.up * _rayOffset);
         ray = new Ray(rayPosition, _mainCamera.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, _distance))
+        
+        if (Physics.Raycast(ray, out RaycastHit hit, _distance, rayCastLayerMask))
         {
             var destroyable = hit.collider.GetComponent<IDestroyable>();
 
@@ -73,15 +82,15 @@ public class PlayerRayCasts
             {
                 if (canDestroy)
                 {
-                    _pController.mouseSettings.ChangeCursor(CursorType.Attack);
-                    if (_pInputs.IsAttacking)
+                    _playerController.mouseSettings.ChangeCursor(CursorType.Attack);
+                    if (_playerInputs.IsAttacking)
                     {
                         destroyable.DestroyByInterface();
                     }
                 }
                 else
                 {
-                    _pController.mouseSettings.ChangeCursor(CursorType.Basic);
+                    _playerController.mouseSettings.ChangeCursor(CursorType.Basic);
                 }
             }
             
@@ -91,14 +100,14 @@ public class PlayerRayCasts
             {
                 if (canInteract)
                 {
-                    if (_pInputs.IsInteracting)
+                    if (_playerInputs.IsInteracting)
                     {
                         Debug.Log("Interaction complete");
                     }
                 }
             }
         }
-        _pController.mouseSettings.ChangeCursor(CursorType.Basic);
+        _playerController.mouseSettings.ChangeCursor(CursorType.Basic);
     }
     public void PlayerRayCastsUpdate()
     {
