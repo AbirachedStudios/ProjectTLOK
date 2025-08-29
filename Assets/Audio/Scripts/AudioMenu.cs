@@ -13,7 +13,7 @@ public class AudioMenu : MonoBehaviour, IPointerEnterHandler
         AudioManager.instance.IniciarMenu(FMODEvents.instance.menu);
     }
 
-    public void SonidoDeBotón(int i)
+    public void SonidoDeBoton(int i)
     {
         AudioManager.instance.SonidoMenu(i);
     }

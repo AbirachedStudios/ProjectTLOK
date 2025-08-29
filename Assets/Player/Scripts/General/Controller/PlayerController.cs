@@ -10,7 +10,6 @@ public class PlayerController : Entity
     private Camera _mainCamera;
     private CharacterController _characterController;
     private Animator _playerAnimator;
-    Transform pTransform;
 
     #endregion
 
@@ -74,8 +73,6 @@ public class PlayerController : Entity
         else { instance = this; }
 
         
-
-        
         //Luego los constructores en orden de dependencia
         playerInputs = new PlayerInputs();
         playerRayCasts = new PlayerRayCasts(this,_mainCamera, playerInputs, distance, rayOffset);
@@ -89,7 +86,7 @@ public class PlayerController : Entity
         playerCombo = new PlayerCombo(playerInputs, playerStats, playerRayCasts);
         playerAnimation = new PlayerAnimation(_playerAnimator, playerMovement, playerInputs, _characterController, playerCombo);
         
-        pSoundControl = new SoundControl(pTransform, GetComponent<CharacterAudio>(), this, _characterController);
+        pSoundControl = new SoundControl(transform, GetComponent<CharacterAudio>(), this, _characterController);
         mouseSettings = new MouseSettings(mouseTexture);
     }
     private void Update()

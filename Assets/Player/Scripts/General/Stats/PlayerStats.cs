@@ -95,26 +95,26 @@ public class PlayerStats : IDamageable
             case 0:
                 playerDamage += boost;
 
-                Debug.Log("Da�o aumentado a " + playerDamage);
+                Debug.Log("Dano aumentado a " + playerDamage);
                 break;
 
             case 1:
-                p_attackSpeed += boost;
+                playerAttackSpeed += boost;
 
-                Debug.Log("Velocidad de ataque aumentada a " + p_attackSpeed);
+                Debug.Log("Velocidad de ataque aumentada a " + playerAttackSpeed);
                 break;
 
             case 2:
-                p_armor += boost;
+                playerArmor += boost;
 
-                Debug.Log("Armadura aumentada a " + p_armor);
+                Debug.Log("Armadura aumentada a " + playerArmor);
                 break;
 
             case 3:
-                p_walkSpeed += boost;
-                p_sprintSpeed += boost;
+                playerWalkSpeed += boost;
+                playerSprintSpeed += boost;
 
-                Debug.Log("Velocidad aumentada a " + p_walkSpeed);
+                Debug.Log("Velocidad aumentada a " + playerWalkSpeed);
                 break;
         }
 
@@ -123,20 +123,20 @@ public class PlayerStats : IDamageable
         switch (category)
         {
             case 0:
-                p_damage -= boost;
+                playerDamage -= boost;
                 break;
 
             case 1:
-                p_attackSpeed -= boost;
+                playerAttackSpeed -= boost;
                 break;
 
             case 2:
-                p_armor -= boost;
+                playerArmor -= boost;
                 break;
 
             case 3:
-                p_walkSpeed -= boost;
-                p_sprintSpeed -= boost;
+                playerWalkSpeed -= boost;
+                playerSprintSpeed -= boost;
                 break;
         }
 

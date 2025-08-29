@@ -8,19 +8,19 @@ using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
-    //Booleano para controlar la música
+    //Booleano para controlar la mï¿½sica
     public bool musicaOn;
 
-    //Crea una lista de los eventos para la función CleanUp
+    //Crea una lista de los eventos para la funcion CleanUp
     private List<EventInstance> eventos;
 
-    //Evento que maneja la música
+    //Evento que maneja la mï¿½sica
     private EventInstance musica;
 
     //Evento que maneja el ambiente
-    private EventInstance ambientación;
+    private EventInstance ambientacion;
 
-    //Evento que maneja el menú
+    //Evento que maneja el menï¿½
     private EventInstance menu;
 
     private float timer = 0;
@@ -89,13 +89,13 @@ public class AudioManager : MonoBehaviour
         CleanUp();
     }
 
-    //Función para los efectos de sonido
+    //Funciï¿½n para los efectos de sonido
     public void PlaySound(EventReference s, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(s, worldPos);
     }
 
-    //Función para los pasos
+    //Funciï¿½n para los pasos
     public void Steps(EventReference s, Vector3 worldPos)
     {
         /*if (timer <= 0)
@@ -108,7 +108,7 @@ public class AudioManager : MonoBehaviour
         }*/
     }
 
-    //Función para atrasar funciones
+    //Funciï¿½n para atrasar funciones
     IEnumerator Delay(float f, EventInstance e)
     {
         yield return new WaitForSeconds(f);
@@ -116,26 +116,26 @@ public class AudioManager : MonoBehaviour
         e.release();
     }
 
-    //Función para iniciar la música
+    //Funciï¿½n para iniciar la mï¿½sica
     public void IniciarMusica(EventReference musicaRef)
     {
         musica = AudioManager.instance.CreateInstance(musicaRef);
         musica.start();
     }
 
-    //Función para seleccionar la música usando el script MusicTrack
+    //Funciï¿½n para seleccionar la mï¿½sica usando el script MusicTrack
     public void SeleccionarMusica(MusicTrack track)
     {
-        musica.setParameterByName("Cambio de música", (float)track);
+        musica.setParameterByName("Cambio de mï¿½sica", (float)track);
     }
 
-    //Función para detener la música
+    //Funciï¿½n para detener la mï¿½sica
     public void DetenerReanudarMusica(bool b)
     {
         if (b) { musica.start(); } else { musica.stop(FMOD.Studio.STOP_MODE.IMMEDIATE); }
     }
 
-    //Manejo del volumen de la música
+    //Manejo del volumen de la mï¿½sica
     public void VolumenMusica(float f)
     {
         musica.setParameterByName("Intensidad", f);
@@ -149,7 +149,7 @@ public class AudioManager : MonoBehaviour
         menu.start();
     }
 
-    //Función para los sonidos del menu
+    //Funciï¿½n para los sonidos del menu
     public void SonidoMenu(int valor)
     {
         menu.setParameterByName("Menus", valor);
@@ -158,16 +158,16 @@ public class AudioManager : MonoBehaviour
 
     public void CerrarMenu() { menu.release(); }
 
-    //Función para el sonido del ambiente
+    //Funciï¿½n para el sonido del ambiente
     private void IniciarAmbiente(EventReference ambiente)
     {
-        ambientación = CreateInstance(ambiente);
-        ambientación.start();
+        ambientacion = CreateInstance(ambiente);
+        ambientacion.start();
     }
 
-    //Función para alterar el ambiente
+    //Funciï¿½n para alterar el ambiente
     public void CambiarAmbiente(string parametro, float valor)
     {
-        ambientación.setParameterByName(parametro, valor);
+        ambientacion.setParameterByName(parametro, valor);
     }
 }
