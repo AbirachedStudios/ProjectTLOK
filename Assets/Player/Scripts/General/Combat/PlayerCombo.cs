@@ -15,6 +15,8 @@ public class PlayerCombo
     [SerializeField] private bool _isDoingCombo = false;
 
     [Header("Test Variables")][Space(5)]
+    //Variables de testing para probar en runtime como funciona el combo, estas variables no se usan en el juego final
+    //y las variables reales son asignadas por el playerStats del jugador
     public float testCooldownAttackTimer = 1;
     public int testMaxComboCount = 4;
     public float testWaitForCombo = 1.6f;

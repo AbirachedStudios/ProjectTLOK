@@ -27,7 +27,6 @@ public class PlayerEventHandler : MonoBehaviour
         //Evento que es cuando el jugador hace daño
         if(_playerCombo.currentTarget == null) return;
         _playerCombo.currentTarget.TakeDamage(20);
-        //_playerCombo.currentTarget
     }
     
     public void AttackEndAnimationEvent()

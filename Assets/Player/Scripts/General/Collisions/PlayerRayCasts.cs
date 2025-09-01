@@ -26,7 +26,7 @@ public class PlayerRayCasts
         _rayOffset = rayOffset; 
         _playerController = playerController;
         _playerInputs = playerInputs;
-        rayCastLayerMask = LayerMask.GetMask("Interactable");
+        rayCastLayerMask = LayerMask.GetMask($"Interactable");
     }
 
     [SerializeField] private float interactionRadius = 0.5f;
