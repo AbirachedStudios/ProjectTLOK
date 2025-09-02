@@ -9,7 +9,7 @@ public class Enemy : Entity, IDestroyable
    public void TakeDamage(float num)
    {
       life -= num;
-      Instantiate(hitParticle, transform.position, Quaternion.identity);
+//      Instantiate(hitParticle, transform.position, Quaternion.identity);
    }
 
    public Transform damageableTransform { get; set; }
