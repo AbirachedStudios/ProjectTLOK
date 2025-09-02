@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerData;
 
 public class PlayerController : Entity
 {
@@ -93,6 +94,7 @@ public class PlayerController : Entity
         
         pSoundControl = new SoundControl(_characterController.transform, _characterAudio, this, _characterController);
         mouseSettings = new MouseSettings(mouseTexture);
+
     }
     private void Update()
     {

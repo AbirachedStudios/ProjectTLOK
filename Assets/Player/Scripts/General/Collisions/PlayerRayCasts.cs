@@ -45,6 +45,8 @@ public class PlayerRayCasts
         {
             var damageable = hit.collider.GetComponent<IDamageable>();
             if (damageable != null)
+            //Testeo de destruccion de paredes. Sujeto a cambios
+            if (hit.collider.TryGetComponent<IDestroyable>(out IDestroyable destroyable))
             {
                 canDestroy = true;
                 destroyableTarget = damageable;
