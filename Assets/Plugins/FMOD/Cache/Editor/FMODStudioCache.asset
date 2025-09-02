@@ -1,0 +1,930 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9119390573179327221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Prologo/Intensidad
+  m_EditorClassIdentifier: 
+  Name: Intensidad
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 578561195
+    data2: 3311089481
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-8957836253818921022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambiente.bank
+  m_EditorClassIdentifier: 
+  Path: Leyenda del Kitsune_FMOD/Build/Desktop/Ambiente.bank
+  Name: Ambiente
+  StudioPath: bank:/Ambiente
+  lastModified: 638754081280000000
+  FileSizes:
+  - Name: Desktop
+    Value: 2547712
+  Exists: 1
+--- !u!114 &-7758883672121512995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Musica/M\xFAsica - Demo"
+  m_EditorClassIdentifier: 
+  Path: "event:/Musica/M\xFAsica - Demo"
+  Guid:
+    Data1: 1982574852
+    Data2: 1242001881
+    Data3: -56831056
+    Data4: 1246382305
+  Banks:
+  - {fileID: 3712086566682139079}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3545776431380335943}
+  - {fileID: 4069093354569507065}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 414400
+--- !u!114 &-6151206581464088065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/Men\xFA/Menus"
+  m_EditorClassIdentifier: 
+  Name: Menus
+  StudioPath: 
+  Min: 0
+  Max: 7
+  Default: 0
+  ID:
+    data1: 1390316126
+    data2: 2926247488
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-5576242921962901390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Efectos-Enemigos.bank
+  m_EditorClassIdentifier: 
+  Path: Leyenda del Kitsune_FMOD/Build/Desktop/Efectos-Enemigos.bank
+  Name: Efectos-Enemigos
+  StudioPath: bank:/Efectos-Enemigos
+  lastModified: 638757459800000000
+  FileSizes:
+  - Name: Desktop
+    Value: 164512
+  Exists: 1
+--- !u!114 &-4156792444365593893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Inventario/Inventario
+  m_EditorClassIdentifier: 
+  Name: Inventario
+  StudioPath: 
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 580748594
+    data2: 2800321176
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Open
+  - Select
+  - Sell
+  - Close
+  Exists: 1
+--- !u!114 &-3545776431380335943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/M\xFAsica - Demo/Cambio de m\xFAsica"
+  m_EditorClassIdentifier: 
+  Name: "Cambio de m\xFAsica"
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3677389453
+    data2: 890534895
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - "Canci\xF3n 1"
+  - "Canci\xF3n 2"
+  Exists: 1
+--- !u!114 &-3273649859941991185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/M\xFAsica - Nivel 1/Intensidad"
+  m_EditorClassIdentifier: 
+  Name: Intensidad
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 578561195
+    data2: 3311089481
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-2711234051100933153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemigos/Yakuza/Muerte-Yakuza
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemigos/Yakuza/Muerte-Yakuza
+  Guid:
+    Data1: -1137466675
+    Data2: 1090337933
+    Data3: -1725597536
+    Data4: -1738116555
+  Banks:
+  - {fileID: -5576242921962901390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &-2600946079804361346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Jugador/Tesla/Muerte-Tesla
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Jugador/Tesla/Muerte-Tesla
+  Guid:
+    Data1: 112122387
+    Data2: 1230689714
+    Data3: -1182386296
+    Data4: 941942500
+  Banks:
+  - {fileID: 1850282681306994895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4442
+--- !u!114 &-2341239970592598896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiente/Prologo
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiente/Prologo
+  Guid:
+    Data1: -43911330
+    Data2: 1211304979
+    Data3: 466469262
+    Data4: -917148375
+  Banks:
+  - {fileID: -8957836253818921022}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -9119390573179327221}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 52471
+--- !u!114 &-1011285252994984126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Jugador/Tesla/Especial-Electricidad
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Jugador/Tesla/Especial-Electricidad
+  Guid:
+    Data1: -118528964
+    Data2: 1329874265
+    Data3: -804646768
+    Data4: -729088757
+  Banks:
+  - {fileID: 1850282681306994895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 650
+--- !u!114 &-751187411254291269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Escena 1/Intensidad
+  m_EditorClassIdentifier: 
+  Name: Intensidad
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 578561195
+    data2: 3311089481
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-498287474089249631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Jugador/Tesla/Pasos-Tesla
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Jugador/Tesla/Pasos-Tesla
+  Guid:
+    Data1: 2095356752
+    Data2: 1256232348
+    Data3: -146800220
+    Data4: -823969293
+  Banks:
+  - {fileID: 1850282681306994895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1220
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 572165878911909034}
+  - {fileID: -8957836253818921022}
+  - {fileID: -5576242921962901390}
+  - {fileID: 1850282681306994895}
+  - {fileID: 5224314190808516308}
+  - {fileID: 6128569014311144431}
+  - {fileID: 3712086566682139079}
+  EditorEvents:
+  - {fileID: -2341239970592598896}
+  - {fileID: 3308129266461462140}
+  - {fileID: 1217880285617220582}
+  - {fileID: 1253411982271662389}
+  - {fileID: 4239282457899679694}
+  - {fileID: -2711234051100933153}
+  - {fileID: -2600946079804361346}
+  - {fileID: -1011285252994984126}
+  - {fileID: -498287474089249631}
+  - {fileID: 1271342489637269977}
+  - {fileID: 8588430026751874086}
+  - {fileID: 2162399651426133316}
+  - {fileID: 16252227644492197}
+  - {fileID: 5193009634908652251}
+  - {fileID: -7758883672121512995}
+  - {fileID: 5735390105806637444}
+  - {fileID: 1069511621743882674}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 5224314190808516308}
+  StringsBanks:
+  - {fileID: 572165878911909034}
+  cacheTime: 638757459800000000
+  cacheVersion: 131621
+--- !u!114 &16252227644492197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Items
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Items
+  Guid:
+    Data1: 947281898
+    Data2: 1181719841
+    Data3: 808102842
+    Data4: 390545925
+  Banks:
+  - {fileID: 1850282681306994895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &572165878911909034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Leyenda del Kitsune_FMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638757459800000000
+  FileSizes:
+  - Name: Desktop
+    Value: 2088
+  Exists: 1
+--- !u!114 &1069511621743882674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Musica/M\xFAsica - Nivel 1"
+  m_EditorClassIdentifier: 
+  Path: "event:/Musica/M\xFAsica - Nivel 1"
+  Guid:
+    Data1: 406411741
+    Data2: 1328717022
+    Data3: 1949672327
+    Data4: -8708402
+  Banks:
+  - {fileID: 3712086566682139079}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -3273649859941991185}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 144905
+--- !u!114 &1217880285617220582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemigos/Yakuza/Pasos-Yakuza
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemigos/Yakuza/Pasos-Yakuza
+  Guid:
+    Data1: 1997124663
+    Data2: 1333649740
+    Data3: 815400124
+    Data4: 1929146816
+  Banks:
+  - {fileID: -5576242921962901390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 385
+--- !u!114 &1233408532595808232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/M\xFAsica - Prueba/Cambio de m\xFAsica"
+  m_EditorClassIdentifier: 
+  Name: "Cambio de m\xFAsica"
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3677389453
+    data2: 890534895
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - "Canci\xF3n 1"
+  - "Canci\xF3n 2"
+  Exists: 1
+--- !u!114 &1253411982271662389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemigos/Yakuza/Avistamiento-Yakuza
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemigos/Yakuza/Avistamiento-Yakuza
+  Guid:
+    Data1: 210240432
+    Data2: 1220383362
+    Data3: 91383994
+    Data4: 727879472
+  Banks:
+  - {fileID: -5576242921962901390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1600
+--- !u!114 &1271342489637269977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Jugador/Tesla/Salto-Tesla
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Jugador/Tesla/Salto-Tesla
+  Guid:
+    Data1: -901406332
+    Data2: 1315048776
+    Data3: -431320904
+    Data4: -1951706070
+  Banks:
+  - {fileID: 1850282681306994895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1140
+--- !u!114 &1850282681306994895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Efectos.bank
+  m_EditorClassIdentifier: 
+  Path: Leyenda del Kitsune_FMOD/Build/Desktop/Efectos.bank
+  Name: Efectos
+  StudioPath: bank:/Efectos
+  lastModified: 638757459800000000
+  FileSizes:
+  - Name: Desktop
+    Value: 664672
+  Exists: 1
+--- !u!114 &2162399651426133316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inventario
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inventario
+  Guid:
+    Data1: -660244533
+    Data2: 1150140057
+    Data3: 1002694302
+    Data4: -1048681114
+  Banks:
+  - {fileID: 1850282681306994895}
+  - {fileID: 6128569014311144431}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4156792444365593893}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3187
+--- !u!114 &3123019110556914459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/M\xFAsica - Prueba/Intensidad"
+  m_EditorClassIdentifier: 
+  Name: Intensidad
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 578561195
+    data2: 3311089481
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3308129266461462140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiente/Escena 1
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiente/Escena 1
+  Guid:
+    Data1: 374385093
+    Data2: 1184526360
+    Data3: -1071541330
+    Data4: 709433682
+  Banks:
+  - {fileID: -8957836253818921022}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -751187411254291269}
+  - {fileID: 5484564483205266262}
+  - {fileID: 7533222328554068990}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 48142
+--- !u!114 &3712086566682139079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Musica.bank
+  m_EditorClassIdentifier: 
+  Path: Leyenda del Kitsune_FMOD/Build/Desktop/Musica.bank
+  Name: Musica
+  StudioPath: bank:/Musica
+  lastModified: 638757459800000000
+  FileSizes:
+  - Name: Desktop
+    Value: 7520832
+  Exists: 1
+--- !u!114 &4069093354569507065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/M\xFAsica - Demo/Intensidad"
+  m_EditorClassIdentifier: 
+  Name: Intensidad
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 578561195
+    data2: 3311089481
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &4239282457899679694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemigos/Yakuza/Ataque-Yakuza
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemigos/Yakuza/Ataque-Yakuza
+  Guid:
+    Data1: -721647923
+    Data2: 1077956492
+    Data3: -926315120
+    Data4: -725616799
+  Banks:
+  - {fileID: -5576242921962901390}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 980
+--- !u!114 &5193009634908652251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Men\xFA"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Men\xFA"
+  Guid:
+    Data1: -71689767
+    Data2: 1306289890
+    Data3: 876608696
+    Data4: -2049567575
+  Banks:
+  - {fileID: 6128569014311144431}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6151206581464088065}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 18919
+--- !u!114 &5224314190808516308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Leyenda del Kitsune_FMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638757459800000000
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
+  Exists: 1
+--- !u!114 &5484564483205266262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Escena 1/Ambiente-Autopista
+  m_EditorClassIdentifier: 
+  Name: Ambiente-Autopista
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 873340903
+    data2: 2593588346
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5735390105806637444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/Musica/M\xFAsica - Prueba"
+  m_EditorClassIdentifier: 
+  Path: "event:/Musica/M\xFAsica - Prueba"
+  Guid:
+    Data1: 1880720204
+    Data2: 1220438271
+    Data3: 1831437699
+    Data4: -1672198900
+  Banks:
+  - {fileID: 3712086566682139079}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 1233408532595808232}
+  - {fileID: 3123019110556914459}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 30913
+--- !u!114 &6128569014311144431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Menus.bank
+  m_EditorClassIdentifier: 
+  Path: Leyenda del Kitsune_FMOD/Build/Desktop/Menus.bank
+  Name: Menus
+  StudioPath: bank:/Menus
+  lastModified: 638755762960000000
+  FileSizes:
+  - Name: Desktop
+    Value: 180800
+  Exists: 1
+--- !u!114 &7533222328554068990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Escena 1/Ambiente-Ciudad
+  m_EditorClassIdentifier: 
+  Name: Ambiente-Ciudad
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 718150896
+    data2: 4067443653
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8588430026751874086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Golpe
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Golpe
+  Guid:
+    Data1: 809559491
+    Data2: 1260899248
+    Data3: -766736252
+    Data4: -1230283779
+  Banks:
+  - {fileID: 1850282681306994895}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3555
