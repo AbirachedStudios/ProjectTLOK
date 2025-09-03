@@ -3,3 +3,4 @@
 Museo-v6.fbx filter=lfs diff=lfs merge=lfs -text
 Chica[[:space:]]Hiding.fbx filter=lfs diff=lfs merge=lfs -text
 Chica[[:space:]]Idle.fbx filter=lfs diff=lfs merge=lfs -text
+Chica[[:space:]]Run.fbx filter=lfs diff=lfs merge=lfs -text
