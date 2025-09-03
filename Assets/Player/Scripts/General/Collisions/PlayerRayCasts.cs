@@ -51,6 +51,7 @@ public class PlayerRayCasts
                 canDestroy = true;
                 destroyableTarget = damageable;
                 destroyableTarget.damageableTransform = hit.transform;
+                interactableTransform = hit.transform;
                 return;
             }
 

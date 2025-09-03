@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IDestroyable
 {
     // Public variables for tuning in the Inspector
     public float attackRange = 2f;
@@ -63,5 +63,16 @@ public class EnemyAI : MonoBehaviour
             isPlayerDetected = false;
             // You can add logic here to return to patrol mode
         }
+    }
+
+    public void TakeDamage(float num)
+    {
+        
+    }
+
+    public Transform damageableTransform { get; set; }
+    public void DestroyByInterface()
+    {
+        
     }
 }
