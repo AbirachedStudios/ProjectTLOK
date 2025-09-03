@@ -1271,7 +1271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119548709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18272206, y: -5.9811326e-17, z: -2.0506996e-16, w: 0.9831646}
+  m_LocalRotation: {x: 0.18272205, y: -0.00000002930059, z: 0.000000005445542, w: 0.9831646}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3032,7 +3032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: -0.0000000042673465, z: 5.417371e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593867, y: 0.0000000042673465, z: -5.417371e-10, w: 0.9920381}
   m_LocalPosition: {x: -13.9, y: 2.78, z: -2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3815,6 +3815,7 @@ MonoBehaviour:
   attackRange: 2
   moveSpeed: 8
   animator: {fileID: 394876087}
+  isPlayerDetected: 0
   npc: {fileID: 394876091}
 --- !u!1 &396153554 stripped
 GameObject:
@@ -6860,7 +6861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721154971}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: 0.0000000042673465, z: -5.417371e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593867, y: -0.0000000042673465, z: 5.417371e-10, w: 0.9920381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17283,7 +17284,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1323659760}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.22
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 1000
   avoidancePriority: 50
@@ -17313,6 +17314,8 @@ MonoBehaviour:
   npc: {fileID: 1323659766}
   rotationSpeed: 5
   safeDistance: 10
+  enemy: {fileID: 394876094}
+  reactionRadius: 20
 --- !u!135 &1323659770
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17330,7 +17333,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
@@ -20107,7 +20110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621316299}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12593867, y: -0.0000000042673465, z: 5.417371e-10, w: 0.9920381}
+  m_LocalRotation: {x: 0.12593867, y: 0.0000000042673465, z: -5.417371e-10, w: 0.9920381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20278,7 +20281,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1631207399}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.22
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 1000
   avoidancePriority: 50
@@ -20358,6 +20361,8 @@ MonoBehaviour:
   npc: {fileID: 1631207402}
   rotationSpeed: 5
   safeDistance: 10
+  enemy: {fileID: 394876094}
+  reactionRadius: 20
 --- !u!135 &1631207410
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20375,7 +20380,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}

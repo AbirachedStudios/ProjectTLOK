@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -12,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     public bool isPlayerDetected = false;
 
     public NPC npc;
+    public static event Action<Vector3> OnPlayerDetected;
 
     void Start()
     {
@@ -22,28 +24,24 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+
         if (isPlayerDetected)
         {
             npc.StopAllCoroutines();
-
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
             if (distanceToPlayer > attackRange)
             {
                 // Chase the player
-                animator.SetFloat("Speed", moveSpeed);
                 animator.SetBool("IsWalking", true);
                 transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-
-                // Look at the player
                 transform.LookAt(player);
             }
             else
             {
                 // Player is in attack range, stand and prepare to fight
-                animator.SetFloat("Speed", 0f);
                 animator.SetBool("IsWalking", false);
-                animator.SetTrigger("EnterCombat"); // Trigger a combat stance animation
+                animator.SetTrigger("EnterCombat");
             }
         }
     }
@@ -52,16 +50,13 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerDetected = true;
+            if (!isPlayerDetected)
+            {
+                isPlayerDetected = true;
+                // Fire the event, passing the enemy's position as the event's source
+                OnPlayerDetected?.Invoke(transform.position);
+            }
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerDetected = false;
-            // You can add logic here to return to patrol mode
-        }
-    }
 }

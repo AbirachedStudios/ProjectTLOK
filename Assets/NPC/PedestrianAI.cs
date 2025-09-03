@@ -6,7 +6,7 @@ public class PedestrianAI : MonoBehaviour
     public Animator animator;
     public NPC npc;
 
-    private Transform threat;
+    private Transform player;
     private bool isThreatDetected = false;
     public float rotationSpeed = 5f; // New variable for rotation speed
 
@@ -15,70 +15,66 @@ public class PedestrianAI : MonoBehaviour
     public float safeDistance = 10f; // The distance at which the pedestrian will stop and crouch
 
     public EnemyAI enemy;
+    public float reactionRadius = 20f;
+    private bool isFleeing = false;
+
     private void Start()
     {
         npc = GetComponent<NPC>();
         enemy = FindObjectOfType<EnemyAI>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        EnemyAI.OnPlayerDetected += CheckDistanceAndFlee;
+    }
+
+    void OnDestroy()
+    {
+        // Unsubscribe from the event
+        EnemyAI.OnPlayerDetected -= CheckDistanceAndFlee;
     }
 
     void Update()
     {
-        
 
-        if (!isCrouching && isThreatDetected && threat != null)
+        if (isFleeing && !isCrouching)
         {
-            float distanceCovered = Vector3.Distance(transform.position, startPosition);
+            npc.StopAllCoroutines();
 
+            float distanceCovered = Vector3.Distance(transform.position, startPosition);
 
             if (distanceCovered < safeDistance)
             {
-
-
-                // Flee from the threat
-                Vector3 fleeDirection = transform.position - threat.position;
+                // Flee from the player
+                Vector3 fleeDirection = transform.position - player.position;
                 transform.position += fleeDirection.normalized * runSpeed * Time.deltaTime;
-
-                // Calculate the direction to the target
-                Vector3 direction = fleeDirection.normalized;
-
-                // Only rotate if there's a direction to face
-                if (direction != Vector3.zero)
-                {
-                    // Calculate the target rotation
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-                    // Smoothly rotate the NPC towards the target rotation
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                }
+                transform.LookAt(fleeDirection);
             }
             else
             {
                 // Reached a safe distance, stop and crouch
                 isCrouching = true;
+                isFleeing = false;
                 animator.SetBool("IsRunning", false);
-                animator.SetBool("IsCrouching", true); // Trigger the crouching animation
+                animator.SetBool("IsCrouching", true);
             }
         }
     }
 
-    private void LateUpdate()
-    {
-        CheckIfFight();
-    }
+    
 
-    void CheckIfFight()
+    private void CheckDistanceAndFlee(Vector3 enemyPosition)
     {
-        if (enemy.isPlayerDetected == true)
+        // Check if the pedestrian is close enough to the event
+        float distanceToThreat = Vector3.Distance(transform.position, enemyPosition);
+
+        if (distanceToThreat < reactionRadius && !isFleeing && !isCrouching)
         {
-
-            npc.StopAllCoroutines();
-            isThreatDetected = true;
-            threat = enemy.transform;
-
-            // Start the fleeing animation
+            // If they are close, start the fleeing behavior
+            startPosition = transform.position;
+            isFleeing = true;
             animator.SetBool("IsRunning", true);
+
         }
     }
 
-   
 }
