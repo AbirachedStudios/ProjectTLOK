@@ -1,0 +1,283 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3639683358470700036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7649349650340856633}
+  - component: {fileID: 4283151327322210246}
+  - component: {fileID: 4408426002747897344}
+  - component: {fileID: 420071935746612224}
+  - component: {fileID: 8986630168173680422}
+  - component: {fileID: 8328876797036672703}
+  m_Layer: 0
+  m_Name: Tesla-Test
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7649349650340856633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639683358470700036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.9, y: 1.24, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5415603469191592223}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &4283151327322210246
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639683358470700036}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.64
+  m_Radius: 0.3
+  m_SlopeLimit: 60
+  m_StepOffset: 0.35
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4408426002747897344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639683358470700036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711309956c023a84d88f107133d6e0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement:
+    freeFall: 0
+    move: {x: 0, y: 0, z: 0}
+    canMove: 0
+  playerRayCasts:
+    canDestroy: 0
+    canInteract: 0
+    interactableTransform: {fileID: 0}
+    rayCastLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    interactionRadius: 0
+  playerCombo:
+    _currentComboCount: 0
+    _comboTimer: 0
+    _comboCooldownAttackTimer: 0
+    _isActive: 0
+    _isDoingCombo: 0
+    testCooldownAttackTimer: 1
+    testMaxComboCount: 4
+    testWaitForCombo: 1.6
+  damage: 10
+  attackSpeed: 2
+  maxHealth: 100
+  health: 100
+  armor: 9
+  walkSpeed: 5
+  sprintSpeed: 8
+  speedInterpolation: 2
+  jumpHeight: 5
+  coyoteTimer: 0
+  gravity: 10
+  coyoteReset: 0
+  distance: 14.3
+  rayOffset: 4
+  turnSpeed: 10
+  mouseTexture:
+  - {fileID: 2800000, guid: 34576b79b9b06be43bc1e42675eb631b, type: 3}
+  - {fileID: 2800000, guid: caeb7caa0b4c08241a09b67af14aa7d4, type: 3}
+  isMoving: 0
+  isJumping: 0
+  offset: 0
+--- !u!95 &420071935746612224
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639683358470700036}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: c134097b48bb71540a50ec71f9ef21f6, type: 3}
+  m_Controller: {fileID: 9100000, guid: b19b6fdb5d541d44daa0732090463da5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8986630168173680422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639683358470700036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a0ece229ce4472b90455545a3dffb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 4408426002747897344}
+--- !u!114 &8328876797036672703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639683358470700036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a012a5125d23d64d950f36c1f51a247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <golpe>k__BackingField:
+    Guid:
+      Data1: 809559491
+      Data2: 1260899248
+      Data3: -766736252
+      Data4: -1230283779
+    Path: event:/SFX/Golpe
+  <especial>k__BackingField:
+    Guid:
+      Data1: -118528964
+      Data2: 1329874265
+      Data3: -804646768
+      Data4: -729088757
+    Path: event:/SFX/Jugador/Tesla/Especial-Electricidad
+  <pasos>k__BackingField:
+    Guid:
+      Data1: 2095356752
+      Data2: 1256232348
+      Data3: -146800220
+      Data4: -823969293
+    Path: event:/SFX/Jugador/Tesla/Pasos-Tesla
+  <salto>k__BackingField:
+    Guid:
+      Data1: -901406332
+      Data2: 1315048776
+      Data3: -431320904
+      Data4: -1951706070
+    Path: event:/SFX/Jugador/Tesla/Salto-Tesla
+--- !u!1001 &5522169422459231988
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7649349650340856633}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_Name
+      value: Tesla Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465940246521907071, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465940246521907071, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465940246521907071, guid: c134097b48bb71540a50ec71f9ef21f6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: c134097b48bb71540a50ec71f9ef21f6, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c134097b48bb71540a50ec71f9ef21f6, type: 3}
+--- !u!4 &5415603469191592223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c134097b48bb71540a50ec71f9ef21f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5522169422459231988}
+  m_PrefabAsset: {fileID: 0}

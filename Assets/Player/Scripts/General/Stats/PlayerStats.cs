@@ -11,51 +11,54 @@ public class PlayerStats : IDamageable
     public PlayerStats(MonoBehaviour monoBehaviour, float dmg, float atkSpd, float mxHlth, float hlth, float armr, float wS, float spS, float jpHght, float gravity)
     {
         _monoBehaviour = monoBehaviour;
-        p_damage = dmg;
-        p_attackSpeed = atkSpd;
-        p_maxHealth = mxHlth;
-        p_health = hlth;
-        p_armor = armr;
-        p_walkSpeed = wS;
-        p_sprintSpeed = spS;
-        p_jumpHeight = jpHght;
-        p_gravity = gravity;
+        playerDamage = dmg;
+        playerAttackSpeed = atkSpd;
+        playerMaxHealth = mxHlth;
+        playerHealth = hlth;
+        playerArmor = armr;
+        playerWalkSpeed = wS;
+        playerSprintSpeed = spS;
+        playerJumpHeight = jpHght;
+        playerGravity = gravity;
     }
 
     /***************-VARIABLES-***************/
-    public float p_damage { get; private set; }
-    public float p_attackSpeed { get; private set; }
-    public float p_maxHealth { get; private set; }
-    public float p_health { get; private set; }
-    public float p_armor { get; private set; }
-    public float p_walkSpeed { get; private set; }
-    public float p_sprintSpeed { get; private set; }
-    public float p_jumpHeight { get; private set; }
-    public float p_gravity { get; private set; }
+    public float playerDamage { get; private set; }
+    public float playerAttackSpeed { get; private set; }
+    public float playerMaxHealth { get; private set; }
+    public float playerHealth { get; private set; }
+    public float playerArmor { get; private set; }
+    public float playerWalkSpeed { get; private set; }
+    public float playerSprintSpeed { get; private set; }
+    public float playerJumpHeight { get; private set; }
+    public float playerGravity { get; private set; }
 
 
     /***************-METODOS-***************/
     public void TakeDamage(float damage)
     {
-        p_health -= damage;
+        playerHealth -= damage;
         Die();
     }
+
+    public Transform damageableTransform { get; set; }
+
     private void Die()
     {
-        if(p_health <= 0)
+        if(playerHealth <= 0)
         {
             //Player Muere
         }
     }
     public void Heal(float healing)
     {
-        if (p_health < p_maxHealth)
+        if (playerHealth < playerMaxHealth)
         {
-            p_health += healing;
+            playerHealth += healing;
 
-            if(p_health >= p_maxHealth)
+            if(playerHealth >= playerMaxHealth)
             {
-                p_health = p_maxHealth;
+                playerHealth = playerMaxHealth;
             }
         }
     }
@@ -70,7 +73,7 @@ public class PlayerStats : IDamageable
 
     /***************-CORRUTINAS-***************/
 
-    public IEnumerator StatPercentageChronometer(float stat, float debuf, float timer)
+    private IEnumerator StatPercentageChronometer(float stat, float debuf, float timer)
     {
         float reset = stat;
         stat = (debuf * stat) / 100;
@@ -78,7 +81,7 @@ public class PlayerStats : IDamageable
         yield return new WaitForSeconds(timer);
         stat = reset;
     }
-    public IEnumerator StatFlatChronometer(float stat, float debuf, float timer)
+    private IEnumerator StatFlatChronometer(float stat, float debuf, float timer)
     {
         float reset = stat;
         stat -= debuf;
@@ -93,28 +96,28 @@ public class PlayerStats : IDamageable
         switch (category)
         {
             case 0:
-                p_damage += boost;
+                playerDamage += boost;
 
-                Debug.Log("Daño aumentado a " + p_damage);
+                Debug.Log("Dano aumentado a " + playerDamage);
                 break;
 
             case 1:
-                p_attackSpeed += boost;
+                playerAttackSpeed += boost;
 
-                Debug.Log("Velocidad de ataque aumentada a " + p_attackSpeed);
+                Debug.Log("Velocidad de ataque aumentada a " + playerAttackSpeed);
                 break;
 
             case 2:
-                p_armor += boost;
+                playerArmor += boost;
 
-                Debug.Log("Armadura aumentada a " + p_armor);
+                Debug.Log("Armadura aumentada a " + playerArmor);
                 break;
 
             case 3:
-                p_walkSpeed += boost;
-                p_sprintSpeed += boost;
+                playerWalkSpeed += boost;
+                playerSprintSpeed += boost;
 
-                Debug.Log("Velocidad aumentada a " + p_walkSpeed);
+                Debug.Log("Velocidad aumentada a " + playerWalkSpeed);
                 break;
         }
 
@@ -123,20 +126,20 @@ public class PlayerStats : IDamageable
         switch (category)
         {
             case 0:
-                p_damage -= boost;
+                playerDamage -= boost;
                 break;
 
             case 1:
-                p_attackSpeed -= boost;
+                playerAttackSpeed -= boost;
                 break;
 
             case 2:
-                p_armor -= boost;
+                playerArmor -= boost;
                 break;
 
             case 3:
-                p_walkSpeed -= boost;
-                p_sprintSpeed -= boost;
+                playerWalkSpeed -= boost;
+                playerSprintSpeed -= boost;
                 break;
         }
 

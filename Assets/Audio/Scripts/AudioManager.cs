@@ -108,6 +108,11 @@ public class AudioManager : MonoBehaviour
         }*/
     }
 
+    public void StopSound()
+    {
+
+    }
+
     //Función para atrasar funciones
     IEnumerator Delay(float f, EventInstance e)
     {

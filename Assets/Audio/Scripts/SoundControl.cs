@@ -1,60 +1,82 @@
 ﻿using UnityEngine;
-using PlayerData;
 using FMOD;
 public class SoundControl
-    {
-        CharacterAudio _ca;
-        PlayerController _controller;
-        CharacterController _cm;
-        Transform _trans;
-        float stepTimer = 0f;
-        float intervaloPisadas = 0.5f;
-        float timer;
+{
+    CharacterAudio _ca;
+    PlayerInputs _controller;
+    CharacterController _cm;
+    Transform _trans;
+    float stepTimer = 0f;
+    float intervaloPisadas = 0.5f;
+    float timerJ;
+    float timerA;
+    bool busy;
 
-    public SoundControl(Transform transform, CharacterAudio characterAudio, PlayerController playerController, CharacterController characterController)
+    public SoundControl(Transform transform, CharacterAudio characterAudio, PlayerInputs playerInputs, CharacterController characterController)
     {
         _ca = characterAudio;
-        _controller = playerController;
+        _controller = playerInputs;
         _cm = characterController;
         _trans = transform;
     }
 
-        public void SoundControllerUpdate()
-        {
-        if (timer > 0) { timer -= Time.deltaTime; }
+    public void SoundControllerUpdate()
+    {
+        if (timerJ > 0) { timerJ -= Time.deltaTime; }
+        if (timerA > 0) { timerA -= Time.deltaTime; }
 
-        //Sonido de pisadas
-        if (_controller.isMoving && _cm.isGrounded)
+        if (timerJ <= 0 && timerA <= 0) { busy = false; }
+
+        if (!busy)
         {
-            stepTimer -= Time.deltaTime;
-            if (stepTimer <= 0f)
+        
+            //Sonido de pisadas
+            if (_controller.MoveInput != Vector3.zero && _cm.isGrounded)
             {
-                Pisadas(_trans.position);
-                stepTimer = intervaloPisadas;
+                stepTimer -= Time.deltaTime;
+                if (stepTimer <= 0f)
+                {
+                    Pisadas();
+                    stepTimer = intervaloPisadas;
+                }
             }
+            //Sonido de salto
+            Salto();
+
+            //Sonido de ataque;
+            Golpe();
         }
 
-        //Sonido de salto
-        Salto(_trans.position);
-        }
+    }
 
-        public void Pisadas(Vector3 position)
+    public void Pisadas()
+    {
+        if (_cm.isGrounded && _controller.MoveInput != Vector3.zero)
         {
-            if (_cm.isGrounded && _controller.isMoving)
-            {
-                AudioManager.instance.Steps(_ca.pasos, position);
-            }
-        }
-
-        public void Salto(Vector3 position)
-        {
-            if (_controller.isJumping && timer <= 0)
-            {
-                AudioManager.instance.PlaySound(_ca.salto, position);
-                stepTimer = 0;
-                timer = 1f;
-            }
-           
+            AudioManager.instance.Steps(_ca.pasos, _trans.position);
         }
     }
+
+    public void Salto()
+    {
+        if (_controller.IsJumping && timerJ <= 0)
+        {
+            AudioManager.instance.PlaySound(_ca.salto, _trans.position);
+            stepTimer = 0;
+            timerJ = 1f;
+            busy = true;
+        }           
+    }
+
+    public void Golpe()
+    {
+        if (_controller.IsAttacking && timerA <= 0)
+        {
+            AudioManager.instance.PlaySound(_ca.golpe, _trans.position);
+            stepTimer = 0;
+            timerA = 1f;
+            busy = true;
+        }
+    }
+}
 

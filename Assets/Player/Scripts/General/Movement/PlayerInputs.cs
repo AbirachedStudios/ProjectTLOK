@@ -1,7 +1,7 @@
+using System;
 using UnityEngine;
 
-namespace PlayerData
-{
+[Serializable]
 public class PlayerInputs
 {
     public bool IsRunning { get; private set; }
@@ -9,6 +9,7 @@ public class PlayerInputs
     public bool IsAttacking { get; private set; }
     public bool IsInteracting { get; private set; }
     public Vector3 MoveInput { get; private set; }
+
     public void InputsUpdate()
     {
         MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -17,5 +18,4 @@ public class PlayerInputs
         IsAttacking = Input.GetKeyDown(KeyCode.Mouse0);
         IsInteracting = Input.GetKeyDown(KeyCode.E);
     }
-}
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2345414870317662825}
   - component: {fileID: 4049689919871838764}
   - component: {fileID: 6956794207690825291}
-  - component: {fileID: 568691616645565785}
+  - component: {fileID: 8336820194348782608}
   m_Layer: 0
   m_Name: TestItem
   m_TagString: Untagged
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &568691616645565785
+--- !u!114 &8336820194348782608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,8 +115,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8362535262506415201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458b58a26f509714a910328485aff0e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 97111af05e9b9e04fb5d50a596341c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "descripci\xF3n": GOTTA GO FAAAAAAAAAAAAAAAAAAST!!!!!!!!!!
   category: 3
   boost: 15
